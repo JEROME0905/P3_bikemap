@@ -1,0 +1,183 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+/* Optimisation des marges et tailles de typos pour chaque navigateur au démarrage */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0 auto;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Mise en forme principal du container */
+#page-container {
+	max-width: 100%;
+	width: 100%;
+	/*border: 3px solid black;*/
+	margin: auto;
+}
+
+/************* MISE EN FORME DU SLIDER ***********/
+#diaporama {
+	/*border: 3px solid orange;*/
+	max-width: 100%;
+	width: 40%;
+	/* cache les éléments qui dépassent du conteneur */
+	overflow: hidden;
+	margin-top: 10px;
+}
+
+#slider {
+	position: relative;
+	/*border: 3px solid black;*/
+}
+
+#slides {
+	/*border: 3px solid blue;*/
+	position: relative;
+	left:0%;
+	width: 300%;
+	display: flex;
+}
+
+#diaporama figure {
+	/*border: 3px solid red;*/
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+}
+
+#diaporama figure img{
+	/*border: 3px solid green;*/
+	width: 100%;
+	height: auto;
+}
+
+
+/*Suppession des legendes de l'image*/
+#diaporama figcaption {
+	display: none;
+}
+
+/***** MISE EN PLACE DES CHEVRONS *****/
+
+.chevrons {
+	/*border: 3px solid red;*/
+	width: 100%;
+	display: flex;
+	position: absolute;
+	top:37%;
+	z-index: 3;
+}
+
+#left_chevron  {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	left: -40px;
+	border-radius: 100%;
+	background:white;
+	opacity: 0.8;
+	border: 1px solid rgb(233,127,105);
+	width: 70px;
+	height: 70px;
+	color: white;
+	cursor: pointer;
+}
+
+#right_chevron {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	right: -40px;
+	border-radius: 100%;
+	background:white;
+	opacity: 0.8;
+	border: 1px solid rgb(233,127,105);
+	width: 70px;
+	height: 70px;
+	color: white;
+	cursor: pointer;
+}
+
+#left_chevron  .fa-chevron-left{
+	font-size: 2em;
+	margin-right: 10px;
+	color: rgb(233,127,105);
+}
+
+#right_chevron .fa-chevron-right{
+	font-size: 2em;
+	margin-left: 10px;
+	color: rgb(233,127,105);
+}
+
+
+/****** MISE EN FORME DU CONTENEUR PRINCIPAL ********/
+
+#principal-containner {
+	border: 3px solid black;
+	max-width: 100%;
+	width: 70%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+}
+
+#bike-maps {
+border: 3px solid orange;
+	max-width: 100%;
+	width: 55%;
+	/* cache les éléments qui dépassent du conteneur */
+	overflow: hidden;
+	height: 400px;
+}
+
+#reservation-bike {
+	border: 3px solid red;
+	max-width: 100%;
+	width: 20%;
+}
