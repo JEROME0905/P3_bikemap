@@ -20,7 +20,7 @@ var Maps = {
 		var iconBase = 'https://github.com/JEROME0905/P3_bikemap/blob/master/icons/';
 		for (element in tabJcdecauxLyon) {
 				myIcon = L.icon ({
-				iconUrl: iconBase + "bike-markers.png",
+				iconUrl: iconBase + 'bike-markers.png',
 				iconSize: [50, 50],
 				iconAnchor: [25, 50],
 				popupAnchor: [-3, -76],
