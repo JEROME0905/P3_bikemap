@@ -7,6 +7,7 @@ slider.initialisation(document.getElementById("slides"),document.getElementById(
 
 /*Mise en route de l'objet slider*/
 slider.initSlide();
-
-var maps = Object.create(Maps);
-maps.initMaps();
+	var maps = Object.create(Maps);
+window.onload = function(){
+	maps.initMaps();
+};

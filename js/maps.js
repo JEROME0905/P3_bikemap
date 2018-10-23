@@ -25,8 +25,6 @@ var Maps = {
 				iconAnchor: [25, 50],
 				popupAnchor: [-3, -76],
 			});
-
-
 			 marker = L.marker([tabJcdecauxLyon[element].position.lat,tabJcdecauxLyon[element].position.lng], { icon: myIcon }).addTo(mymap);
 			 marker.bindPopup(element);
 		}
