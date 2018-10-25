@@ -17,11 +17,11 @@ var Maps = {
 	    accessToken: 'pk.eyJ1IjoiamVyb21lbGViYWlsMDkwNTE5OTMiLCJhIjoiY2pubGp6eTQ0MTM0bjNrczV5YnB1NnQ0cSJ9.J_ZfAyv-DJyBzb1h2NFFBw'
 		}).addTo(mymap);
 		// Nous définissons le dossier qui contiendra les marqueurs
-		var iconBase = 'https://github.com/JEROME0905/P3_bikemap/blob/master/icons/bike.png';
+		var iconBase = 'icons/bike.png';
 		for (element in tabJcdecauxLyon) {
 				myIcon = L.icon ({
 				iconUrl: iconBase,
-				iconSize: [50, 50],
+				iconSize: [30, 30],
 				iconAnchor: [25, 50],
 				popupAnchor: [-3, -76],
 			});
