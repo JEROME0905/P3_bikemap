@@ -2,7 +2,7 @@ var Slide = {
 	
 	that: 0,
 
-	initialisation: function(slidesElt, flecheGaucheElt, flecheDroiteElt, vitesseGauche, vitesseDroite, lastPosition, compteur,time,initialPosition,finalPosition,finalCompteur) {
+	initialisation: function(slidesElt, flecheGaucheElt, flecheDroiteElt, vitesseGauche, vitesseDroite, lastPosition, compteur,time,initialPosition,finalPosition,finalCompteur,play,pause) {
 		this.slidesElt = slidesElt;
 	 	this.flecheGaucheElt = flecheGaucheElt;
 	 	this.flecheDroiteElt = flecheDroiteElt;
@@ -15,10 +15,14 @@ var Slide = {
 	 	this.finalPosition = finalPosition;
 	 	this.finalCompteur = finalCompteur;
 	 	this.slideAuto;
+	 	this.play= play;
+	 	this.pause=pause;
 	 	that = this;
+
     },
 
     initSlide: function () {
+    	document.getElementById('slider-pause').addEventListener("click",that.sliderPause);
 	    that.flecheGaucheElt.addEventListener("click", that.deplacerBlocGauche);
 		that.flecheDroiteElt.addEventListener("click", that.deplacerBlocDroite);
 		document.addEventListener("keydown", function (e) {
@@ -56,9 +60,6 @@ var Slide = {
 		    case "ArrowLeft": 
 		    	that.deplacerBlocGauche();
 		        break;
-		    case "Space": 
-		        that.sliderPause();
-		        break;
 		    case "ArrowRight":
 		    	that.deplacerBlocDroite();
 		        break;
@@ -67,15 +68,19 @@ var Slide = {
 
 	sliderPause: function() {
 	that.compteur++;
-		console.log(that.compteur);
+	// console.log(that.compteur);  
 		if (that.compteur=== that.finalCompteur) {
 			that.slideAuto = setInterval(that.deplacerBlocGauche,that.time);
 			that.compteur=0;
+			that.play.style.display = "none";
+			that.pause.style.display = "block";
 		} 
 		else {
 			clearInterval(that.slideAuto);
+			that.pause.style.display = "none";
+			that.play.style.display = "block";
 		}
-		console.log(that.time);
+	// console.log(that.time);
 	}
 
 };
