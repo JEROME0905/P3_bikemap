@@ -304,6 +304,7 @@ h2 {
 	border-radius: 20px;
 	padding-right: 5px;
 	padding-left: 5px;
+	margin-bottom: 10px;
 }
 
 #infoStation {
@@ -333,6 +334,10 @@ h2 {
 	margin-right: 20px;
 }
 
+#nameStation {
+	display: none;
+}
+
 #nom {
 	max-width: 100%;
 	width: 50%;
@@ -343,6 +348,7 @@ h2 {
 	width: 50%;
 	margin-bottom: 10px;
 }
+
 
 #boutonReservation {
 	cursor: pointer;
@@ -375,6 +381,7 @@ h2 {
 #signatureCanvas h2 {
 	color: white;
 	padding: 5px 20px;
+	margin-bottom: 20px;
 }
 
 #canvas {

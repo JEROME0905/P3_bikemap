@@ -36,7 +36,6 @@ var Maps = {
 
 			// Récuperation des données de la jcDecaux
 			obj.tabJcdecauxLyon = JSON.parse(reponse);
-			
 			/*Initialisation de la carte */
 			var mymap = L.map('bike-maps').setView([45.75, 4.85], 14); // Cordonnées de la ville de Lyon
 
@@ -88,7 +87,7 @@ var Maps = {
 								obj.adresse = "Adresse : " + obj.tabJcdecauxLyon[element].address;
 								obj.place = " " + obj.tabJcdecauxLyon[element].bike_stands + " places";
 								obj.veloDispo = " " + obj.tabJcdecauxLyon[element].available_bike_stands + " vélos disponibles";
-								obj.updateDOM(obj.adresse,obj.place,obj.veloDispo);
+								obj.updateDOM(obj.adresse,obj.place,obj.veloDispo,nameStation);
 
 							} else
 								obj.updateDOM("La station est fermée. Sélectionner une autre station","","");	
@@ -104,9 +103,9 @@ var Maps = {
 		if (textplacesTotal.length > 0) {
 			obj.infoStationElt.style.display = "block";
 			obj.formulaireReservationElt.style.display = "block";
-			obj.adresseElt.textContent = textAdresse.toLowerCase();
-			obj.placesTotalElt.textContent = textplacesTotal.toLowerCase();
-			obj.veloDispoElt.textContent = textveloDispo.toLowerCase();
+			obj.adresseElt.textContent = textAdresse;
+			obj.placesTotalElt.textContent = textplacesTotal;
+			obj.veloDispoElt.textContent = textveloDispo;
 		}	
 		else {
 			obj.infoStationElt.style.display = "block";

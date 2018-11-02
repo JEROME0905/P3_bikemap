@@ -31,7 +31,6 @@ var Canvas = {
 	hiddenCanvas: function () {
 		// Cache le canvas si l'utilisateur appui sur le btn annuler.
 		canvasObj.btnAnnulerElt.addEventListener("click", function() {
-			canvasObj.ctx.clearRect(0,0,800,300);
 			canvasObj.signatureCanvasElt.style.display = "none";
 		});
 	},
@@ -49,6 +48,8 @@ var Canvas = {
     canvasObj.canvasElt.addEventListener("mousedown", function (e) {
       canvasObj.ctx.beginPath(); // iniatilisation du tracé;
       canvasObj.ctx.moveTo(e.offsetX, e.offsetY); // Permet de savoir ou commence le tracé
+      console.log(e.offsetX);
+       console.log(e.offsetY);
       canvasObj.drawing = true;
 
     });
@@ -56,12 +57,11 @@ var Canvas = {
     // Déplacement de la souris
     canvasObj.canvasElt.addEventListener("mousemove", function (e) {
       // Si le bouton est enfoncé, dessine
-      if (canvasObj.drawing === true) {
+      if (canvasObj.drawing === true)
         canvasObj.draw(e.offsetX, e.offsetY);
         // offsetX sauvegarde la position horizontale
         // offsetY sauvegarde la position verticale
         // Aucun décalage avec la souris  
-      }
     });
 
     // Btn souris relaché
@@ -74,11 +74,15 @@ var Canvas = {
 		// doigt appuyé sur l'écran
 	    canvasObj.canvasElt.addEventListener("touchstart", function (e) {
 
-	        var touchX = e.touches[0].pageX - e.touches[0].target.offsetLeft;
-	        var touchY = e.touches[0].pageY - e.touches[0].target.offsetTop;
-	        
 	        canvasObj.drawing = true;
 	        canvasObj.ctx.beginPath();
+
+console.log("touchstart");
+	        var touchX = e.touches[0].clientX - canvasObj.canvasElt.getBoundingClientRect().left;
+	        var touchY = e.touches[0].clientY - canvasObj.canvasElt.getBoundingClientRect().top;
+	        console.log(touchX);
+	        console.log(touchY);
+	        console.log("");
 	        canvasObj.ctx.moveTo(touchX, touchY);
 	        // empeche le scroll de l'écran
 	        e.preventDefault();
@@ -86,16 +90,16 @@ var Canvas = {
 
 	    // doigt se déplace sur l'écran
 	    canvasObj.canvasElt.addEventListener("touchmove", function (e) {
-	    	var touchX = e.touches[0].pageX - e.touches[0].target.offsetLeft;
-	    	var touchY = e.touches[0].pageY - e.touches[0].target.offsetTop;
-
-		    if (canvasObj.drawing === true) {
+ 			var touchX = e.touches[0].clientX - canvasObj.canvasElt.getBoundingClientRect().left;
+	        var touchY = e.touches[0].clientY - canvasObj.canvasElt.getBoundingClientRect().top;
+	    	console.log(e);
+	    	console.log(touchX);
+	    	console.log(touchY);
+		    if (canvasObj.drawing === true)
 		        canvasObj.draw(touchX, touchY);
-		    }
 
 		    e.preventDefault();
 	    });
-
 	    // Le doigt se retire de l'écran
 	    canvasObj.canvasElt.addEventListener("touchend", function (e) {
 		    canvasObj.drawing = false;

@@ -46,7 +46,7 @@ var Slide = {
 /* Déplacement du bloc sur la droite*/ 
 	deplacerBlocDroite: function() {
 		if (that.lastPosition === that.initialPosition) {
-			//Ne rien faire pour une fois		
+			// Ne rien faire pour une fois		
 	    }
 	    else{
 	    	that.slidesElt.style.left = (that.lastPosition + that.vitesseDroite) + "%";

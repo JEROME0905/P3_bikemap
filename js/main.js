@@ -19,10 +19,18 @@ var maps = Object.create(Maps);
 
 // Création d'un objet canvas
 var canvas = Object.create(Canvas);
+
+// Définition des variables de l'objet canvas
 canvas.initialisation(document.getElementById("boutonReservation"),document.getElementById("signatureCanvas"),document.getElementById("annuler"));
 
-
+// Lancement de l'objet canvas
 canvas.initCanvas();
+
+var timer = Object.create(Timer);
+
+timer.init(document.getElementById("reserver"),document.getElementById("information-reservation"),20);
+timer.initTimer();
+
 
 
 
