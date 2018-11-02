@@ -1,29 +1,111 @@
-/*var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
-  backgroundColor: 'rgba(255, 255, 255, 0)',
-  penColor: 'rgb(255, 255, 255)'
-});*/
+var Canvas = {
 
-var signature = {
-	canvas: null,
-  	clearButton: null,
-	/*resizeCanvas: function resizeCanvas() {
-		// When zoomed out to less than 100%, for some very strange reason,
-		// some browsers report devicePixelRatio as less than 1
-		// and only part of the canvas is cleared then.
-		var ratio = Math.max(window.devicePixelRatio || 1, 1);
-		this.canvas.width = canvas.offsetWidth * ratio;
-		this.canvas.height = canvas.offsetHeight * ratio;
-		this.canvas.getContext("2d").scale(ratio, ratio);
-	},*/
+	initialisation: function(boutonReservation,signatureCanvas,btnAnnuler) {
+		// Définition des variables du DOM
+		this.boutonReservationElt = boutonReservation;
+		this.signatureCanvasElt = signatureCanvas;
+		this.btnAnnulerElt = btnAnnuler;
+		this.canvasElt = document.getElementById("canvas");
+		this.ctx = this.canvasElt.getContext("2d");
+		this.drawing = false;
+		canvasObj = this;
+	},
 
-	init: function init() {
-		this.canvas = document.querySelector(".signature-pad");
-    	this.clearButton = document.getElementById('clear');
-		signaturePad = new SignaturePad(this.canvas);
-    	this.clearButton.addEventListener('click', function (event) {
-  signaturePad.clear();
-});
+	initCanvas: function() {
+		// LancEment de la signature canva.
+		canvasObj.displayCanvas();
+		canvasObj.hiddenCanvas();
+		canvasObj.drawCanvas();
+	},
+
+	displayCanvas: function() {
+		// Affiche le canvas si quelqu'un clique sur le btn réserver du formulaire.
+		canvasObj.boutonReservationElt.addEventListener("click", function() {
+			canvasObj.signatureCanvasElt.style.display = "flex";
+			canvasObj.ctx.clearRect(0,0,800,300);
+			
+		});
+
+	},
+
+	hiddenCanvas: function () {
+		// Cache le canvas si l'utilisateur appui sur le btn annuler.
+		canvasObj.btnAnnulerElt.addEventListener("click", function() {
+			canvasObj.ctx.clearRect(0,0,800,300);
+			canvasObj.signatureCanvasElt.style.display = "none";
+		});
+	},
+
+	drawCanvas: function(){
+		canvasObj.ctx.strokeStyle = "red";
+    	canvasObj.ctx.lineWidth = 2;
+		canvasObj.drawMouse();
+		canvasObj.drawTouchscreen();
+
+	},
+
+	drawMouse: function() {
+		// EVENT: Bouton de la souris enfoncé
+    canvasObj.canvasElt.addEventListener("mousedown", function (e) {
+      canvasObj.ctx.beginPath(); // iniatilisation du tracé;
+      canvasObj.ctx.moveTo(e.offsetX, e.offsetY); // Permet de savoir ou commence le tracé
+      canvasObj.drawing = true;
+
+    });
+
+    // EVENT: Déplacement de la souris
+    canvasObj.canvasElt.addEventListener("mousemove", function (e) {
+      // Si le bouton est enfoncé, dessine
+      if (canvasObj.drawing === true) {
+        canvasObj.draw(e.offsetX, e.offsetY);
+        // offsetX sauvegarde la position horizontale
+        // offsetY sauvegarde la position verticale
+        // Aucun décalage avec la souris  
+      }
+    });
+
+    // EVENT: Bouton de la souris relâché
+    canvasObj.canvasElt.addEventListener("mouseup", function (e) {
+      canvasObj.drawing = false;
+    });
+	},
+
+	drawTouchscreen: function(){
+		// EVENT: touché
+	    canvasObj.canvasElt.addEventListener("touchstart", function (e) {
+	        var touchX = e.touches[0].pageX - e.touches[0].target.offsetLeft;
+	        var touchY = e.touches[0].pageY - e.touches[0].target.offsetTop;
+
+	        canvasObj.drawing = true;
+	        ctx.beginPath();
+	        ctx.moveTo(touchX, touchY);
+	        console.log(e);
+	        // empeche le scroll de l'écran
+	        e.preventDefault();
+	    });
+
+	    // EVENT: Déplacement du touché
+	    canvasObj.canvasElt.addEventListener("touchmove", function (e) {
+	    	var touchX = e.touches[0].pageX - e.touches[0].target.offsetLeft;
+	    	var touchY = e.touches[0].pageY - e.touches[0].target.offsetTop;
+
+		    if (canvasObj.drawing === true) {
+		        canvasObj.draw(touchX, touchY);
+		    }
+
+		    e.preventDefault();
+	    });
+
+	    // EVENT: fin du touché
+	    canvasObj.canvasElt.addEventListener("touchend", function (e) {
+		    canvasObj.drawing = false;
+	    });
+	},
+
+
+	draw:function(x,y) {
+	canvasObj.ctx.lineTo(x,y); // Ajout du segment.
+    canvasObj.ctx.stroke(); // dessine le contour du segment.
 	}
-};
 
-signature.init();
+};

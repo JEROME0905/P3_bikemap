@@ -266,6 +266,7 @@ header h1 {
 	align-items: center;*/
 	margin-top: 20px;
 	margin-bottom: 10px;
+	position: relative;
 }
 
 /*Mise en forme du conteneur contenant la carte*/
@@ -301,6 +302,8 @@ h2 {
 	margin-left: 20px;
 	margin-right: 20px;
 	border-radius: 20px;
+	padding-right: 5px;
+	padding-left: 5px;
 }
 
 #infoStation {
@@ -351,6 +354,49 @@ h2 {
 	margin-bottom: 10px;	
 }
 
+/* Mise en forme du canvas */
+
+#signatureCanvas {
+	position: absolute;
+	top: 0px;
+	z-index: 99999999999;
+	max-width: 100%;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(220,29,34);
+	border: 3px solid grey;
+	border-radius: 10px;
+	display: none;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#signatureCanvas h2 {
+	color: white;
+	padding: 5px 20px;
+}
+
+#canvas {
+	background-color: rgb(36,36,36);
+	border: 3px solid grey;
+	border-radius: 20px;
+}
+
+/* Mise en forme des bouton */
+
+.btnCanvas {
+	cursor: pointer;
+	color: white;
+	border-radius: 10px;
+	border: 3px solid grey;
+	background-color: rgb(36,36,36);
+	padding: 4px 4px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 1em;
+}
+
 /****** Mise en forme du footer ******/
 
 footer {
@@ -360,6 +406,7 @@ footer {
 	height: 150px;
 	padding-top: 20px;	
 	padding-bottom: 20px;
+	margin-top: 40px;
 }
 
 footer div {
@@ -387,25 +434,6 @@ footer div {
 #temps-restant {
 
 }
-
-.wrapper {
-  position: relative;
-  width: 400px;
-  height: 200px;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.signature-pad {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width:400px;
-  height:200px;
-}
-
 
 /*responsive tablette*/
 @media screen and (max-width: 1024px) {

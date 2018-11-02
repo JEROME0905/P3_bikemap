@@ -46,7 +46,8 @@
 					</div>
 				</section>
 			<section id="principal-containner">
-				<div id="bike-maps">
+
+				<div id="bike-maps" >
 				</div>
 				<div id="reservation-bike">
 					<h2>Détail de la station</h2>
@@ -63,16 +64,16 @@
 				        <button type="button" class="form-reservation" id="boutonReservation">Réserver</button>
 				    </div>    
 				</div>
+
+				<div id="signatureCanvas">
+					<h2>Signature</h2>
+					<canvas id="canvas" width="800" height="250"></canvas>
+			        <div>
+			        	<button type="button" id="reserver" class="btnCanvas">RÉSERVER</button>
+			        	<button type="button" id="annuler" class="btnCanvas">ANNULER</button>
+		        	</div>
+		        </div>	
 			</section>
-			
-<div class="wrapper">
-   <canvas id="signature-pad" class="signature-pad" width=400 height=200></canvas>
-</div>
-<div>
-  <button id="validate">Valider</button>
-  <button id="clear">Effacer</button>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 			<footer>
 			<div>
 				<p id="information-reservation"></p>
@@ -85,6 +86,7 @@
 		<script type="text/javascript" src="js/maps.js"></script>
 		<script type="text/javascript" src="js/slider.js"></script>
 		<script type="text/javascript" src="js/canvas.js"></script>
-		<script type="text/javascript" src="js/main.js"></script>			
+		<script type="text/javascript" src="js/timer.js"></script>	
+		<script type="text/javascript" src="js/main.js"></script>		
 	</body>
 </html>
