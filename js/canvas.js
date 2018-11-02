@@ -45,7 +45,7 @@ var Canvas = {
 	},
 
 	drawMouse: function() {
-		// EVENT: Bouton de la souris enfoncé
+		// Btn de la souris enfoncé
     canvasObj.canvasElt.addEventListener("mousedown", function (e) {
       canvasObj.ctx.beginPath(); // iniatilisation du tracé;
       canvasObj.ctx.moveTo(e.offsetX, e.offsetY); // Permet de savoir ou commence le tracé
@@ -53,7 +53,7 @@ var Canvas = {
 
     });
 
-    // EVENT: Déplacement de la souris
+    // Déplacement de la souris
     canvasObj.canvasElt.addEventListener("mousemove", function (e) {
       // Si le bouton est enfoncé, dessine
       if (canvasObj.drawing === true) {
@@ -64,27 +64,27 @@ var Canvas = {
       }
     });
 
-    // EVENT: Bouton de la souris relâché
+    // Btn souris relaché
     canvasObj.canvasElt.addEventListener("mouseup", function (e) {
       canvasObj.drawing = false;
     });
 	},
 
 	drawTouchscreen: function(){
-		// EVENT: touché
+		// doigt appuyé sur l'écran
 	    canvasObj.canvasElt.addEventListener("touchstart", function (e) {
+
 	        var touchX = e.touches[0].pageX - e.touches[0].target.offsetLeft;
 	        var touchY = e.touches[0].pageY - e.touches[0].target.offsetTop;
-
+	        
 	        canvasObj.drawing = true;
 	        canvasObj.ctx.beginPath();
 	        canvasObj.ctx.moveTo(touchX, touchY);
-	        console.log(e);
 	        // empeche le scroll de l'écran
 	        e.preventDefault();
 	    });
 
-	    // EVENT: Déplacement du touché
+	    // doigt se déplace sur l'écran
 	    canvasObj.canvasElt.addEventListener("touchmove", function (e) {
 	    	var touchX = e.touches[0].pageX - e.touches[0].target.offsetLeft;
 	    	var touchY = e.touches[0].pageY - e.touches[0].target.offsetTop;
@@ -96,7 +96,7 @@ var Canvas = {
 		    e.preventDefault();
 	    });
 
-	    // EVENT: fin du touché
+	    // Le doigt se retire de l'écran
 	    canvasObj.canvasElt.addEventListener("touchend", function (e) {
 		    canvasObj.drawing = false;
 	    });
@@ -104,8 +104,8 @@ var Canvas = {
 
 
 	draw:function(x,y) {
-	canvasObj.ctx.lineTo(x,y); // Ajout du segment.
-    canvasObj.ctx.stroke(); // dessine le contour du segment.
+		canvasObj.ctx.lineTo(x,y); // Ajout du segment.
+	    canvasObj.ctx.stroke(); // dessine le contour du segment.
 	}
 
 };
