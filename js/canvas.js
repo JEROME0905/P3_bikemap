@@ -77,8 +77,8 @@ var Canvas = {
 	        var touchY = e.touches[0].pageY - e.touches[0].target.offsetTop;
 
 	        canvasObj.drawing = true;
-	        ctx.beginPath();
-	        ctx.moveTo(touchX, touchY);
+	        canvasObj.ctx.beginPath();
+	        canvasObj.ctx.moveTo(touchX, touchY);
 	        console.log(e);
 	        // empeche le scroll de l'écran
 	        e.preventDefault();
