@@ -1,31 +1,60 @@
 var Canvas = {
 
-	initialisation: function(boutonReservation,signatureCanvas,btnAnnuler) {
+	initialisation: function(boutonReservation,signatureCanvas,btnAnnuler,nom,prenom) {
 		// Définition des variables du DOM
 		this.boutonReservationElt = boutonReservation;
 		this.signatureCanvasElt = signatureCanvas;
 		this.btnAnnulerElt = btnAnnuler;
+		this.inputNomElt = nom;
+		this.inputPrenomElt = prenom;
+		
+		// Initialisation du canvas
 		this.canvasElt = document.getElementById("canvas");
 		this.ctx = this.canvasElt.getContext("2d");
+
 		this.drawing = false;
 		canvasObj = this;
 	},
 
 	initCanvas: function() {
-		// LancEment de la signature canva.
+		// Lancement de la signature canvas.
 		canvasObj.displayCanvas();
 		canvasObj.hiddenCanvas();
 		canvasObj.drawCanvas();
+
+		// Affiche le dernier nom tapé
+		canvasObj.inputNomElt.addEventListener("click", function(){
+			canvasObj.inputNomElt.value = localStorage.getItem("Nom");
+		});
+
+		// Affiche le dernier prénom tapé 
+		canvasObj.inputPrenomElt.addEventListener("click", function(){
+			canvasObj.inputPrenomElt.value = localStorage.getItem("Prenom");
+		});
+
+		// Affiche le dernier nom tapé TACTILE
+		canvasObj.inputPrenomElt.addEventListener("touchstart", function(){
+			canvasObj.inputPrenomElt.value = localStorage.getItem("Prenom");
+		});
+
+		// Affiche le dernier prénom tapé TACTILE
+		canvasObj.inputPrenomElt.addEventListener("touchstart", function(){
+			canvasObj.inputPrenomElt.value = localStorage.getItem("Prenom");
+		});
+
 	},
 
 	displayCanvas: function() {
 		// Affiche le canvas si quelqu'un clique sur le btn réserver du formulaire.
 		canvasObj.boutonReservationElt.addEventListener("click", function() {
 			canvasObj.signatureCanvasElt.style.display = "flex";
-			canvasObj.ctx.clearRect(0,0,800,300);
-			
-		});
+			// Sauvegarde du prenom et du nom que l'utilisateur à tapé
+			localStorage.setItem("Nom", canvasObj.inputNomElt.value);
+			localStorage.setItem("Prenom" , canvasObj.inputPrenomElt.value);
 
+			// Effacement du canvas
+			canvasObj.ctx.clearRect(0,0,800,300);	
+		});
 	},
 
 	hiddenCanvas: function () {
@@ -36,68 +65,53 @@ var Canvas = {
 	},
 
 	drawCanvas: function(){
-		canvasObj.ctx.strokeStyle = "red";
-    	canvasObj.ctx.lineWidth = 2;
-		canvasObj.drawMouse();
+		// Mise en forme du trait 
+		canvasObj.ctx.strokeStyle = "red"; // Couleur du trait rouge
+    	canvasObj.ctx.lineWidth = 2; // Définition de la taille du trait
+		canvasObj.drawMouse(); 
 		canvasObj.drawTouchscreen();
-
 	},
 
 	drawMouse: function() {
 		// Btn de la souris enfoncé
-    canvasObj.canvasElt.addEventListener("mousedown", function (e) {
-      canvasObj.ctx.beginPath(); // iniatilisation du tracé;
-      canvasObj.ctx.moveTo(e.offsetX, e.offsetY); // Permet de savoir ou commence le tracé
-      console.log(e.offsetX);
-       console.log(e.offsetY);
-      canvasObj.drawing = true;
-
-    });
-
+    	canvasObj.canvasElt.addEventListener("mousedown", function (e) {
+	        canvasObj.ctx.beginPath(); // Initialisation du tracé;
+	        canvasObj.ctx.moveTo(e.offsetX, e.offsetY); // Permet de savoir ou commence le tracé
+	        canvasObj.drawing = true;
+    	});
     // Déplacement de la souris
-    canvasObj.canvasElt.addEventListener("mousemove", function (e) {
-      // Si le bouton est enfoncé, dessine
-      if (canvasObj.drawing === true)
-        canvasObj.draw(e.offsetX, e.offsetY);
-        // offsetX sauvegarde la position horizontale
-        // offsetY sauvegarde la position verticale
-        // Aucun décalage avec la souris  
-    });
-
+    	canvasObj.canvasElt.addEventListener("mousemove", function (e) {
+	      	// Si le bouton est enfoncé, dessine
+	        if (canvasObj.drawing === true)
+	            canvasObj.draw(e.offsetX, e.offsetY);
+		        // offsetX sauvegarde la position horizontale
+		        // offsetY sauvegarde la position verticale
+		        // Aucun décalage avec la souris  
+    	});
     // Btn souris relaché
-    canvasObj.canvasElt.addEventListener("mouseup", function (e) {
-      canvasObj.drawing = false;
-    });
+    	canvasObj.canvasElt.addEventListener("mouseup", function (e) {
+      		canvasObj.drawing = false;
+    	});
 	},
 
 	drawTouchscreen: function(){
 		// doigt appuyé sur l'écran
 	    canvasObj.canvasElt.addEventListener("touchstart", function (e) {
-
 	        canvasObj.drawing = true;
 	        canvasObj.ctx.beginPath();
-
-console.log("touchstart");
 	        var touchX = e.touches[0].clientX - canvasObj.canvasElt.getBoundingClientRect().left;
 	        var touchY = e.touches[0].clientY - canvasObj.canvasElt.getBoundingClientRect().top;
-	        console.log(touchX);
-	        console.log(touchY);
-	        console.log("");
 	        canvasObj.ctx.moveTo(touchX, touchY);
 	        // empeche le scroll de l'écran
 	        e.preventDefault();
 	    });
 
-	    // doigt se déplace sur l'écran
+	    // le doigt se déplace sur l'écran
 	    canvasObj.canvasElt.addEventListener("touchmove", function (e) {
  			var touchX = e.touches[0].clientX - canvasObj.canvasElt.getBoundingClientRect().left;
 	        var touchY = e.touches[0].clientY - canvasObj.canvasElt.getBoundingClientRect().top;
-	    	console.log(e);
-	    	console.log(touchX);
-	    	console.log(touchY);
 		    if (canvasObj.drawing === true)
 		        canvasObj.draw(touchX, touchY);
-
 		    e.preventDefault();
 	    });
 	    // Le doigt se retire de l'écran
@@ -106,10 +120,8 @@ console.log("touchstart");
 	    });
 	},
 
-
 	draw:function(x,y) {
 		canvasObj.ctx.lineTo(x,y); // Ajout du segment.
 	    canvasObj.ctx.stroke(); // dessine le contour du segment.
 	}
-
 };

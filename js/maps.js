@@ -8,6 +8,7 @@ var Maps = {
 		this.iconBaseBleu = iconBaseBleu;
 
 		this.iconChoisie ="";
+
 		// definition des variables qui vont permettrent de récupérer la latitude d'un marker.
 		this.latLng = "";
 		this.lat1 = ""; 
@@ -67,10 +68,10 @@ var Maps = {
 
 				var marker = L.marker([obj.tabJcdecauxLyon[element].position.lat,obj.tabJcdecauxLyon[element].position.lng],{ icon: myIcon }).addTo(mymap).on('click', onClick);
 				
-				function onClick() {
+				function onClick() { 
 
 					// Récupération de la latitude et de la longitude du marker sur lequel on a cliqué.
-					// Transformation de ces donnés  en chaine de caractère String.
+					// Transformation de ces donnés en chaine de caractère String.
 
 					obj.latLng = JSON.stringify(this.getLatLng());
 					obj.lat1 = obj.latLng.split(','); // Récupération de la latitude   
@@ -84,7 +85,7 @@ var Maps = {
 
 							 else if(obj.tabJcdecauxLyon[element].status === "OPEN") {
 
-								obj.adresse = "Adresse : " + obj.tabJcdecauxLyon[element].address;
+								obj.adresse = "ADRESSE : " + obj.tabJcdecauxLyon[element].address;
 								obj.place = " " + obj.tabJcdecauxLyon[element].bike_stands + " places";
 								obj.veloDispo = " " + obj.tabJcdecauxLyon[element].available_bike_stands + " vélos disponibles";
 								obj.updateDOM(obj.adresse,obj.place,obj.veloDispo,nameStation);
@@ -94,7 +95,6 @@ var Maps = {
 						}
 					}
 				};
-
 			}
 		});
 	},

@@ -25,7 +25,6 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 
-
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -50,9 +49,7 @@ table {
 	border-spacing: 0;
 }
 
-
-/* Définition de la police personnalisée */
-
+/***** Définition de la police personnalisée *****/
 
 @font-face {
     font-family: 'robotobold';
@@ -68,7 +65,7 @@ table {
     font-style: normal;
 }
 
-/* Mise en forme général*/
+/****** MISE EN FORME GENERAL*******/
 
 h1, h2 {
 	font-family: 'robotobold';
@@ -81,14 +78,14 @@ body {
 	width: 100%;
 }
 
-/* Mise en forme principal du container */
+/******* MISE EN FORME DU CONTENEUR PRINCIPAL ********/
 #page-container {
 	max-width: 100%;
 	width: 100%;
 	margin: auto;
 }
 
-/****** Mise en forme du header ******/
+/****** MISE EN FORME DU HEADER ******/
 header {
 	max-width: 100%;
 	width: 100%;
@@ -159,7 +156,6 @@ header h1 {
 	height: auto;
 }
 
-
 /*Suppession des legendes de l'image*/
 #diaporama figcaption {
 	display: none;
@@ -218,7 +214,7 @@ header h1 {
 	color: rgb(233,127,105);
 }
 
-/* Mise en forme du bouton pause*/
+/******* MISE EN FORME DU BOTUON PAUSE ********/
 
 #slider-pause {
 	/*border:3px solid blue;*/
@@ -254,7 +250,6 @@ header h1 {
 	display:block;
 }
 
-
 /****** MISE EN FORME DU CONTENEUR PRINCIPAL ********/
 
 #principal-containner {
@@ -262,28 +257,25 @@ header h1 {
 	max-width: 100%;
 	width: 60%;
 	display: flex;
-	/*justify-content: space-between;
-	align-items: center;*/
 	margin-top: 20px;
 	margin-bottom: 10px;
 	position: relative;
 }
 
-/*Mise en forme du conteneur contenant la carte*/
+/*Mise en forme de la maps*/
 #bike-maps {
-/*border: 3px solid orange;*/
 	max-width: 100%;
-	width: 75%;
+	width: 70%;
 	/* cache les éléments qui dépassent du conteneur */
 	overflow: hidden;
-	height: 400px;
+	height: 430px;
 }
 
 /*Mise en forme du formulaire de réservation*/
 #reservation-bike {
 	border: 3px solid grey;
 	max-width: 100%;
-	width: 25%;
+	width: 30%;
 	border-radius: 20px;
 	margin-left: 20px;
 	background-color: rgb(220,29,34);
@@ -293,7 +285,7 @@ header h1 {
 h2 {
 	text-align: center;
 	font-weight:bold;
-	font-size: 1.5em;
+	font-size: 1.3em;
 	border:3px solid grey;
 	background-color: rgb(36,36,36);
 	padding-top: 5px;
@@ -304,18 +296,18 @@ h2 {
 	border-radius: 20px;
 	padding-right: 5px;
 	padding-left: 5px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 #infoStation {
 	margin-top: 20px;
-	margin-left: 20px;
 	font-weight: bold;
 	color: rgb(36,36,36);
 	padding-bottom: 20px;
 	max-width: 100%;
 	width: 100%;
 	display: none;
+	font-size: 1em;
 }
 
 #formulaireReservation {
@@ -323,15 +315,15 @@ h2 {
 	width: 100%;
 	color: rgb(36,36,36);
 	margin-left: 20px;
-	margin-right: 10px;
 	display: none;
 }
 
 .form-reservation {
-	margin-top: 10px;
+	margin-top: 15px;
 	font-weight: bold;
 	font-size: 1.1em;
-	margin-right: 20px;
+	max-width: 100%;
+	width: 90%;
 }
 
 #nameStation {
@@ -349,8 +341,10 @@ h2 {
 	margin-bottom: 10px;
 }
 
-
 #boutonReservation {
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 1.1em;
 	cursor: pointer;
 	color: white;
 	border-radius: 10px;
@@ -360,7 +354,7 @@ h2 {
 	margin-bottom: 10px;	
 }
 
-/* Mise en forme du canvas */
+/********** MISE EN FORME DU CANVAS *********/
 
 #signatureCanvas {
 	position: absolute;
@@ -390,7 +384,7 @@ h2 {
 	border-radius: 20px;
 }
 
-/* Mise en forme des bouton */
+/* Mise en forme des bouton du canvas */
 
 .btnCanvas {
 	cursor: pointer;
@@ -401,10 +395,10 @@ h2 {
 	padding: 4px 4px;
 	margin-bottom: 10px;
 	font-weight: bold;
-	font-size: 1e
+	font-size: 1em;
 }
 
-/****** Mise en forme du footer ******/
+/****** MISE EN FORME DU FOOTER ******/
 
 footer {
 	max-width: 100%;
@@ -423,29 +417,31 @@ footer div {
 	height: 150px;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
 	border-radius: 20px;
 	color: white;
 	font-weight: bold;
-	font-size: 3em;
+	font-size: 1.3em;
 	font-family: sans-serif;
 	border: 4px solid grey;
 }
 
-
-/*NE PAS OUBLIER DE LES REMPLIR*/
-
 #information-reservation {
-
+	margin-left: 20px;
+	max-width: 100%;
+	width: 80%;
 }
 
-#temps-restant {
-
+#lastTimes {
+	margin-left: 20px;
+	max-width: 100%;
+	width: 80%;
 }
 
-/*responsive tablette*/
+/******* RESPONSIVE TABLETTE *********/
 @media screen and (max-width: 1024px) {
 
-	/****** Mise en forme du header ******/
+	/****** MISE EN FORME DU HEADER ******/
 	header {
 		flex-direction: column; 
 	}
@@ -462,7 +458,7 @@ footer div {
 
 	/************* MISE EN FORME DU SLIDER ***********/
 	#diaporama {
-		width: 80%;
+		width: 100%;
 	}
 
 	.fa-pause-circle {
@@ -475,7 +471,7 @@ footer div {
 	
 	/****** MISE EN FORME DU CONTENEUR PRINCIPAL ********/
 	#principal-containner {
-		width: 80%;
+		width: 90%;
 	}
 
 	#bike-maps {
@@ -486,17 +482,16 @@ footer div {
 		width: 35%;
 	}
 
-	/* MISE EN FORME DU FOOTER*/
+	/*********** MISE EN FORME DU FOOTER ***********/
 	footer div {
 		width:80%;
 	}
-
 }
 
-/*responsive mobile*/
+/******** RESPONSIVE MOBILE *********/
 @media screen and (max-width: 480px) {
 
-	/****** Mise en forme du header ******/
+	/****** MISE EN FORME DU HEADER ******/
 	header h1 {
 		font-size: 1.2em;
 		margin-bottom: 10px;
@@ -517,8 +512,7 @@ footer div {
 		font-size: 2em;
 	}
 
-
-	/*Réductions des chevrons*/
+	/*Diminution de la taille des chevrons*/
 
 	#left_chevron  {
 		left: -17px;
@@ -548,11 +542,17 @@ footer div {
 
 	#bike-maps {
 		width: 100%;
+		height: 200px;
 	}
 
 	#reservation-bike {
 		margin-top: 20px;
 		margin-left: 0px;
 		width: 100%;
+	}
+
+	/******* MISE EN FORME DU CANVAS *******/
+	#canvas {
+		width: 280px;
 	}
 }

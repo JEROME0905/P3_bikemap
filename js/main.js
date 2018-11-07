@@ -1,4 +1,3 @@
-
 // Création d'un objet slider
 var slider = Object.create(Slide);
 
@@ -8,30 +7,29 @@ slider.initialisation(document.getElementById("slides"),document.getElementById(
 // Mise en route de l'objet slider
 slider.initSlide();
 
-
 // Création d'un objet slide
 var maps = Object.create(Maps);
 
 // Définition des variables de l'objet maps
-	maps.init('icons/bike-vert.png','icons/bike-rouge.png','icons/bike-bleu.png',document.getElementById("adresse"),document.getElementById("nbr-places"),document.getElementById("nbr-velo-dispo"),document.getElementById("formulaireReservation"),document.getElementById("infoStation"));
-	maps.initMaps();
+maps.init('icons/bike-vert.png','icons/bike-rouge.png','icons/bike-bleu.png',document.getElementById("adresse"),document.getElementById("nbr-places"),document.getElementById("nbr-velo-dispo"),document.getElementById("formulaireReservation"),document.getElementById("infoStation"));
 
+// Mise en route de l'objet maps
+maps.initMaps();
 
 // Création d'un objet canvas
 var canvas = Object.create(Canvas);
 
 // Définition des variables de l'objet canvas
-canvas.initialisation(document.getElementById("boutonReservation"),document.getElementById("signatureCanvas"),document.getElementById("annuler"));
+canvas.initialisation(document.getElementById("boutonReservation"),document.getElementById("signatureCanvas"),document.getElementById("annuler"),document.getElementById("nom"),document.getElementById("prenom"));
 
 // Lancement de l'objet canvas
 canvas.initCanvas();
 
+// Création d'un objet timer
 var timer = Object.create(Timer);
 
-timer.init(document.getElementById("reserver"),document.getElementById("information-reservation"),20);
+// Définition des variables de l'objet timer
+timer.init(document.getElementById("reserver"),document.getElementById("information-reservation"),document.getElementById("signatureCanvas"),document.getElementById("lastTimes"),2);
+
+// Lancement de l'objet timer
 timer.initTimer();
-
-
-
-
-
