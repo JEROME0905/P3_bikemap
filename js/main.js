@@ -29,7 +29,7 @@ canvas.initCanvas();
 var timer = Object.create(Timer);
 
 // Définition des variables de l'objet timer
-timer.init(document.getElementById("reserver"),document.getElementById("information-reservation"),document.getElementById("signatureCanvas"),document.getElementById("lastTimes"),2);
+timer.init(document.getElementById("reserver"),document.getElementById("information-reservation"),document.getElementById("signatureCanvas"),document.getElementById("lastTimes"),20);
 
 // Lancement de l'objet timer
 timer.initTimer();
