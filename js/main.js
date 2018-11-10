@@ -7,14 +7,16 @@ slider.initialisation(document.getElementById("slides"),document.getElementById(
 // Mise en route de l'objet slider
 slider.initSlide();
 
+
 // Création d'un objet slide
 var maps = Object.create(Maps);
 
 // Définition des variables de l'objet maps
-maps.init('icons/bike-vert.png','icons/bike-rouge.png','icons/bike-bleu.png',document.getElementById("adresse"),document.getElementById("nbr-places"),document.getElementById("nbr-velo-dispo"),document.getElementById("formulaireReservation"),document.getElementById("infoStation"));
+maps.init('icons/bike-vert.png','icons/bike-rouge.png','icons/bike-bleu.png',document.getElementById("adresse"),document.getElementById("nbr-places"),document.getElementById("nbr-velo-dispo"),document.getElementById("formulaireReservation"),document.getElementById("infoStation"),document.getElementById("nom"),document.getElementById("prenom"));
 
 // Mise en route de l'objet maps
 maps.initMaps();
+
 
 // Création d'un objet canvas
 var canvas = Object.create(Canvas);
@@ -24,6 +26,7 @@ canvas.initialisation(document.getElementById("boutonReservation"),document.getE
 
 // Lancement de l'objet canvas
 canvas.initCanvas();
+
 
 // Création d'un objet timer
 var timer = Object.create(Timer);

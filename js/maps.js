@@ -1,6 +1,6 @@
 var Maps = {
 
-	init: function(iconBaseVert,iconBaseRouge,iconBaseBleu,adresseElt,placesTotalElt,veloDispoElt,formulaireReservationElt,infoStationElt){
+	init: function(iconBaseVert,iconBaseRouge,iconBaseBleu,adresseElt,placesTotalElt,veloDispoElt,formulaireReservationElt,infoStationElt,nom,prenom){
 
 		// Définition des différents markers
 		this.iconBaseVert = iconBaseVert;
@@ -20,6 +20,8 @@ var Maps = {
 		this.veloDispoElt = veloDispoElt;
 		this.formulaireReservationElt = formulaireReservationElt;
 		this.infoStationElt = infoStationElt;
+		this.inputNomElt = nom;
+		this.inputPrenomElt = prenom;
 
 		// Récuperation des données de la jcDecaux
 		this.tabJcdecauxLyon = ""; 
@@ -94,6 +96,12 @@ var Maps = {
 								obj.updateDOM("La station est fermée. Sélectionner une autre station","","");	
 						}
 					}
+
+					// Affichage du dernier prénom et nom tapé par l'utilisateur
+					obj.inputPrenomElt.value = localStorage.getItem("Prenom");
+					obj.inputNomElt.value = localStorage.getItem("Nom");
+
+					
 				};
 			}
 		});

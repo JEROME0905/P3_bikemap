@@ -22,26 +22,6 @@ var Canvas = {
 		canvasObj.hiddenCanvas();
 		canvasObj.drawCanvas();
 
-		// Affiche le dernier nom tapé
-		canvasObj.inputNomElt.addEventListener("click", function(){
-			canvasObj.inputNomElt.value = localStorage.getItem("Nom");
-		});
-
-		// Affiche le dernier prénom tapé 
-		canvasObj.inputPrenomElt.addEventListener("click", function(){
-			canvasObj.inputPrenomElt.value = localStorage.getItem("Prenom");
-		});
-
-		// Affiche le dernier nom tapé TACTILE
-		canvasObj.inputPrenomElt.addEventListener("touchstart", function(){
-			canvasObj.inputPrenomElt.value = localStorage.getItem("Prenom");
-		});
-
-		// Affiche le dernier prénom tapé TACTILE
-		canvasObj.inputPrenomElt.addEventListener("touchstart", function(){
-			canvasObj.inputPrenomElt.value = localStorage.getItem("Prenom");
-		});
-
 	},
 
 	displayCanvas: function() {
