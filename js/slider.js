@@ -66,10 +66,10 @@ var Slide = {
 	slideToMove: function(code) {
 		switch (code) {
 		    case "ArrowLeft": 
-		    	that.deplacerBlocGauche();
+		    	that.deplacerBlocDroite();
 		        break;
 		    case "ArrowRight":
-		    	that.deplacerBlocDroite();
+		    	that.deplacerBlocGauche();
 		        break;
     	}
 	},
