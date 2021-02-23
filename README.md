@@ -14,6 +14,7 @@ Pour ce projet nous allons développer une page de type SPA (Single Page Applica
 
 <br />
 
+![SPA-Mockup](https://user-images.githubusercontent.com/32362009/108871888-e6895b00-75f9-11eb-9b74-6fca55569006.png)
 
 <br />
 
