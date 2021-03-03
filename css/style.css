@@ -577,7 +577,7 @@ footer div {
    --- RESPONSIVE
    --- ============================================================================== */
 
-@media screen and (max-width: 1024px) {
+@media (max-width: 1024px) {
 
     /* ========= HEADER  =========*/
     
