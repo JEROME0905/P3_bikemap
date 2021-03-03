@@ -1,0 +1,2 @@
+User-Agent: * 
+Sitemap: https://jerome0905.github.io/P3_bikemap/sitemap.xml
