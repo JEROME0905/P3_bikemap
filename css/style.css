@@ -8,10 +8,6 @@
    --- MISE EN FORME GÉNÉRALE
    --- ============================================================================== */
 
-/*section {
-    height: 100vh;
-}*/
-
 #reservation {
     background-color: rgb(25, 30, 47);
 }
@@ -315,12 +311,19 @@ video {
 }
 
 input, .btnCanvas {
-    padding: 7px 20px;
     border-radius: 50em;
     font-size: 20px;
     margin: 10px 0;
     border: 0;
     color: rgb(255, 255, 255);
+}
+
+input{
+    padding: 2px 20px; 
+}
+
+.btnCanvas {
+    padding: 7px 20px;
 }
 
 input, input::placeholder {
@@ -356,6 +359,8 @@ hr {
     border: 1px solid #fff;
     transition: 1.5s;
     background-size: 200% auto;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
 #boutonReservation:hover {
@@ -523,12 +528,10 @@ hr {
 
 .image-contact:first-child {
     align-self: flex-end;
-    background-image: url(image/bicycle.jpg);
 }
 
 .image-contact:nth-child(2) {
     align-self: flex-start;
-    background-image: url(image/fille-a-vélo.jpg);
 }
 
 /* --- ==============================================================================
@@ -618,6 +621,11 @@ footer div {
 
     #maps {
         height: 300px;
+    }
+
+    #reservation-velo h3,  #station-fermee, #infoStation, #formulaireReservation, #recapitulatif-reservation {
+        margin-top: 25px;
+        margin-bottom: 25px;
     }
 
     
