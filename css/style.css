@@ -1,0 +1,725 @@
+* {
+    scroll-behavior: smooth;
+}
+
+
+
+/* --- ==============================================================================
+   --- MISE EN FORME GÉNÉRALE
+   --- ============================================================================== */
+
+/*section {
+    height: 100vh;
+}*/
+
+#reservation {
+    background-color: rgb(25, 30, 47);
+}
+
+#utilisation,
+#contact {
+    background-color: white;
+}
+
+p {
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
+h3 {
+    margin-bottom: 0;
+}
+
+h2 {
+    font-family: 'Archivo Black', sans-serif;
+    margin: 20px 20px 20px 20px;
+    font-size: 60px;
+}
+
+
+/* --- ==============================================================================
+   --- HEADER
+   --- ============================================================================== */
+
+header {
+    position: fixed;
+    top: 0px;
+    z-index: 9999;
+    width: 100%;
+    background-color: rgb(25, 30, 47);
+    box-shadow: 0 1px 5px 0 rgba(84, 84, 84, 0.2), 0 2px 2px 0 rgba(84, 84, 84, 0.2), 0 3px 1px -2px rgba(84, 84, 84, 0.2);
+}
+
+/* Customisation du logo de la société Easy bike */
+.marque-site {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Finger Paint', cursive;
+    font-size: 20px;
+    color: white;
+}
+
+.marque-site:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.marque-site img {
+    margin-right: 10px;
+}
+
+/* Menu du header */
+.navbar-nav a {
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* Suppression de la couleur de bootstrap */
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white;
+}
+
+/* TRANSITION BORDURE */
+.transition-bordure::before {
+    content: "";
+    /* Positionnement du bloc content*/
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    /* Aggrandissement du bloc*/
+    width: calc(100% + 1px);
+    height: 2px;
+    background: #36F7B1;
+    /* Changement de la taille de du bloc content */
+    -webkit-transform: scale(0, 1);
+    -ms-transform: scale(0, 1);
+    transform: scale(0, 1);
+    /* Déplacement du point d'origine (Par défaut celui-ci est au centre) */
+    -webkit-transform-origin: right center;
+    -ms-transform-origin: right center;
+    transform-origin: right center;
+    z-index: 6;
+    /* ease : Rapide sur le début et ralenti sur la fin. */
+    -webkit-transition: transform 0.5s ease;
+    transition: transform 0.5s ease;
+}
+
+.transition-bordure:hover::before {
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+    -webkit-transform-origin: left center;
+    -ms-transform-origin: left center;
+    transform-origin: left center;
+}
+
+
+/* --- ==============================================================================
+   --- ACCUEIL
+   --- ============================================================================== */
+
+#accueil {
+    margin-top: 51px;
+    position: relative;
+    height: 100vh;
+}
+
+video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.presentation-entreprise {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3)
+}
+
+.presentation-entreprise a {
+    margin-bottom: 10px;
+}
+
+.presentation-entreprise h1 {
+    font-size: 120px;
+    color: white;
+    font-family: 'Finger Paint', cursive;
+    text-align: center;
+}
+
+.presentation-entreprise p {
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.presentation-entreprise a span {
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    width: 24px;
+    height: 24px;
+    transform: rotate(315deg);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+    animation: fleche-clignotante 2s infinite ;
+    opacity: 0;
+}
+
+.presentation-entreprise a span:nth-of-type(1) {
+    animation-delay: 0s;
+}
+
+.presentation-entreprise a span:nth-of-type(2) {
+    animation-delay: .15s;
+}
+
+.presentation-entreprise a span:nth-of-type(3) {
+    animation-delay: .3s;
+}
+
+/* Animation fleche vers la section utilisation */
+@keyframes fleche-clignotante {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* --- ==============================================================================
+   --- RÉSERVATION VELO
+   --- ============================================================================== */
+#reservation {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ========= GÉNÉRALITÉS ========= */
+/* Définition de la largeur et de la hauteur de la carte leafflet et du bloc réserver votre vélo */
+#maps, #reservation-velo {
+    height: 100%;
+    width: 50%;
+}
+
+
+/* ========= MISE EN FORME DU TITRE H2 =========*/
+.titre-reservation {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+
+/* ========= MISE EN FORME BLOC CONTENANT LA MAP ET LE BLOC RÉSERVER VOTRE VELO =========*/
+.choix-station-velo {
+    display: flex;
+    height: 80vh;
+}
+
+
+/* ========= MISE EN FORME DU BLOC RÉSERVER VOTRE VELO ========= */
+#reservation-velo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
+/* Mise en forme du titre h3 */
+#reservation-velo h3 {
+    text-align: center;
+    font-size: 40px;
+    width: 100%;
+}
+
+
+/* ========= GÉNÉRALITÉS ========= */
+#infoStation, #formulaireReservation, #recapitulatif-reservation, #station-fermee {
+    width: 80%;
+}
+
+
+#station-fermee {
+    display: none;
+}
+
+#reservation-impossible {
+    text-align: center;
+    color: #AB8C38;
+    font-size: 18px;
+    margin-left: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* MISE EN FORME DU BLOC INFOSTATION ET DU BLOC RECAPITULATIF INFORMATION */
+.form-reservation, #recapitulatif-reservation {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 2;
+    letter-spacing: 1px;
+}
+
+#infoStation span,
+#recapitulatif-reservation span {
+    color: #F2AC99;
+    font-size: 17px;
+    margin-left: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#recapitulatif-reservation {
+    padding: 5px 0;
+}
+
+
+/*========= MISE EN FORME FORMULAIRE =========*/
+#formulaireReservation {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#formulaireReservation label {
+    display: none;
+}
+
+input, .btnCanvas {
+    padding: 7px 20px;
+    border-radius: 50em;
+    font-size: 20px;
+    margin: 10px 0;
+    border: 0;
+    color: rgb(255, 255, 255);
+}
+
+input, input::placeholder {
+    color: white;
+    font-weight: bold;
+}
+
+input {
+    border: 1px solid #F2AC99;
+    background-color: rgba(0, 0, 0, 0.034);
+    color: white;
+}
+
+#boutonReservation:focus, .form-reservation:focus {
+    outline: none; /* Remove chrome's input highlighting / focus border */
+}
+
+hr {
+    margin-top: 2em;
+    margin-bottom: 0;
+    width: 98%;
+    height: 0.5px;
+    background-color: white;
+}
+
+#boutonReservation {
+    background-image: linear-gradient(to left, #DD5E89 0%, #F7BB97 51%, #DD5E89 100%);
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-top: 2em;
+    border: 0;
+    border: 1px solid #fff;
+    transition: 1.5s;
+    background-size: 200% auto;
+}
+
+#boutonReservation:hover {
+    background-position: right center;
+}
+
+
+/*========= MISE EN FORME DU BLOC SIGNATURE  =========*/
+#signatureCanvas {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(25, 30, 47);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    display: none;
+}
+
+#signatureCanvas canvas {
+    border-radius: 30px;
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#signatureCanvas div {
+    width: 350px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.btnCanvas:nth-child(2) {
+    background-image: linear-gradient(to right, #BA5370 0%, #F4E2D8 51%, #BA5370 100%);
+}
+
+.btnCanvas:first-child {
+    background-image: linear-gradient(to right, #1d976c 0%, #93F9B9 51%, #1D976C 100%)
+}
+
+.btnCanvas {
+    transition: 1.5s;
+    background-size: 200% auto;
+    border: 1px solid white;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btnCanvas:hover {
+    background-position: right center;
+}
+
+
+/* --- ==============================================================================
+   --- NOUS CONTACTER
+   --- ============================================================================== */
+
+#contact {
+    display: flex;
+    background-color: #ebebeb8a;
+}
+
+
+/* ========= MISE EN FORME DU RECTANGLE2  =========*/
+
+.rectangle1 {
+    width: 60%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.rectangle1 p {
+    font-size: 20px;
+    margin: 0 20px 0 20px;
+}
+
+#rectangle-under-carte-visite {
+    position: relative;
+    margin-top: 10vh;
+    align-self: center;
+    width: 70%;
+    height: 50%;
+    background-color: #36F7B1;
+    box-shadow: 0 1px 5px 0 rgba(84, 84, 84, 0.2), 0 2px 2px 0 rgba(84, 84, 84, 0.2), 0 3px 1px -2px rgba(84, 84, 84, 0.2);
+}
+
+.carte-de-visite {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(25, 30, 47);
+    color: white;
+    box-shadow: 0 1px 5px 0 rgba(84, 84, 84, 0.2), 0 2px 2px 0 rgba(84, 84, 84, 0.2), 0 3px 1px -2px rgba(84, 84, 84, 0.2)
+}
+
+#petit-rectangle-haut-gauche {
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    z-index: 3;
+    width: 60px;
+    height: 60px;
+    background-color: #36F7B1;
+    box-shadow: 0 1px 5px 0 rgba(84, 84, 84, 0.2), 0 2px 2px 0 rgba(84, 84, 84, 0.2), 0 3px 1px -2px rgba(84, 84, 84, 0.2);
+}
+
+
+/* Mise en forme des éléments de la carte de visite */
+
+.carte-de-visite h3 {
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+.info,
+.carte-de-visite h3 {
+    margin-left: 40px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+}
+
+
+/* Mise en forme des icones font-awesome */
+
+.icone-info {
+    font-size: 30px;
+    color: #36F7B1;
+    ;
+    margin-right: 16px;
+}
+
+.info:nth-child(5) {
+    margin-bottom: 20px;
+}
+
+
+/* ========= MISE EN FORME DU RECTANGLE2  =========*/
+
+.rectangle2 {
+    width: 40%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.image-contact {
+    height: 50%;
+    width: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.image-contact:first-child {
+    align-self: flex-end;
+    background-image: url(image/bicycle.jpg);
+}
+
+.image-contact:nth-child(2) {
+    align-self: flex-start;
+    background-image: url(image/fille-a-vélo.jpg);
+}
+
+/* --- ==============================================================================
+   --- FOOTER
+   --- ============================================================================== */
+
+footer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 5px 0;
+    background-color: rgb(25, 30, 47);
+}
+
+footer h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    width: 30%;
+}
+
+footer div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 70%;
+}
+
+.reseaux-sociaux {
+    height: 30px;
+    margin: 10px 0;
+    padding: 0 60px;
+}
+
+.reseaux-sociaux:hover {
+    opacity: 0.5;
+}
+
+
+/* --- ==============================================================================
+   --- RESPONSIVE
+   --- ============================================================================== */
+
+@media screen and (max-width: 1024px) {
+
+    /* ========= HEADER  =========*/
+    
+    /* Logo site */
+    .marque-site {
+        font-size: 15px;
+    }
+
+    .marque-site img {
+        height: 25px;
+        width: 25px;
+    }
+
+    /* Menu hamburger */
+    .navbar-toggler-icon {
+        width: 1.2em;
+        height: 1.2em;
+    }
+
+    /* Lien menu header */
+    .navbar-nav a {
+        font-size: 12px;
+        margin-top: 8px;
+    }
+
+    .navbar-collapse {
+        margin-top: 5px;
+    }
+
+
+    /* ========= RÉSERVATION VELO ========= */
+
+    .choix-station-velo {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #maps, #reservation-velo {
+        width: 100%;
+    }
+
+    #maps {
+        height: 300px;
+    }
+
+    
+
+
+
+
+
+
+    /* ========= NOUS CONTACTER  ========= */
+    .rectangle1 {
+        width: 100%;
+        height: auto;
+        justify-content: space-around;
+        
+    }
+
+    .rectangle2 {
+        display: none;
+    }
+
+    #rectangle-under-carte-visite {
+        height: 480px;
+        margin-top: 136px;
+        margin-bottom: 136px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+
+    /* =========ACCUEIL =========*/
+    .presentation-entreprise h1 {
+        font-size: 80px;
+    }
+    
+    /*========= FOOTER =========*/
+    .reseaux-sociaux {
+        padding: 0 35px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+
+    /*========= MISE EN FORME GÉNÉRALE =========*/
+    h2 {
+        font-size: 40px;
+    }
+
+
+    /* ========= ACCUEIL =========*/
+    .presentation-entreprise h1 {
+        font-size: 50px;
+    }
+
+    .presentation-entreprise p {
+        font-size: 15px;
+    }
+
+    
+    .presentation-entreprise a  {
+        margin-bottom: 60px;
+    }
+
+
+    /* ========= NOUS CONTACTER  =========*/
+ 
+    .rectangle1 p {
+        font-size: 14px;
+        margin-top: 30px;
+    }
+    #rectangle-under-carte-visite {
+        width: 80%;
+        height: 480px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .info p {
+        margin: 10px 0;
+    }
+    #petit-rectangle-haut-gauche {
+        display: none;
+    }
+    /*========= FOOTER =========*/
+    footer {
+        flex-direction: column;
+    }
+    footer h3 {
+        font-size: 15px;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    footer div {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .reseaux-sociaux {
+        height: 20px;
+    }
+}
