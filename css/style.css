@@ -7,7 +7,6 @@
 /* --- ==============================================================================
    --- MISE EN FORME GÉNÉRALE
    --- ============================================================================== */
-
 #reservation {
     background-color: rgb(25, 30, 47);
 }
@@ -36,7 +35,6 @@ h2 {
 /* --- ==============================================================================
    --- HEADER
    --- ============================================================================== */
-
 header {
     position: fixed;
     top: 0px;
@@ -120,7 +118,6 @@ header {
 /* --- ==============================================================================
    --- ACCUEIL
    --- ============================================================================== */
-
 #accueil {
     margin-top: 51px;
     position: relative;
@@ -262,7 +259,6 @@ video {
 #infoStation, #formulaireReservation, #recapitulatif-reservation, #station-fermee {
     width: 80%;
 }
-
 
 #station-fermee {
     display: none;
@@ -419,7 +415,6 @@ hr {
 /* --- ==============================================================================
    --- NOUS CONTACTER
    --- ============================================================================== */
-
 #contact {
     display: flex;
     background-color: #ebebeb8a;
@@ -427,7 +422,6 @@ hr {
 
 
 /* ========= MISE EN FORME DU RECTANGLE2  =========*/
-
 .rectangle1 {
     width: 60%;
     height: 90vh;
@@ -478,7 +472,6 @@ hr {
 
 
 /* Mise en forme des éléments de la carte de visite */
-
 .carte-de-visite h3 {
     margin-top: 20px;
     font-size: 40px;
@@ -494,13 +487,10 @@ hr {
     align-items: center;
 }
 
-
 /* Mise en forme des icones font-awesome */
-
 .icone-info {
     font-size: 30px;
     color: #36F7B1;
-    ;
     margin-right: 16px;
 }
 
@@ -510,7 +500,6 @@ hr {
 
 
 /* ========= MISE EN FORME DU RECTANGLE2  =========*/
-
 .rectangle2 {
     width: 40%;
     height: 90vh;
@@ -534,10 +523,10 @@ hr {
     align-self: flex-start;
 }
 
+
 /* --- ==============================================================================
    --- FOOTER
    --- ============================================================================== */
-
 footer {
     display: flex;
     align-items: center;
@@ -576,11 +565,9 @@ footer div {
 /* --- ==============================================================================
    --- RESPONSIVE
    --- ============================================================================== */
-
 @media (max-width: 1400px) {
 
     /* ========= HEADER  =========*/
-    
     /* Logo site */
     .marque-site {
         font-size: 15px;
@@ -609,6 +596,9 @@ footer div {
 
 
     /* ========= RÉSERVATION VELO ========= */
+    .titre-reservation{
+        background-color: rgb(25, 30, 47);
+    }
 
     .choix-station-velo {
         flex-direction: column;
@@ -627,6 +617,7 @@ footer div {
         margin-top: 25px;
         margin-bottom: 25px;
     }
+
 
     /* ========= NOUS CONTACTER  ========= */
     .rectangle1 {
@@ -653,6 +644,7 @@ footer div {
     .presentation-entreprise h1 {
         font-size: 80px;
     }
+
     
     /*========= FOOTER =========*/
     .reseaux-sociaux {
@@ -661,7 +653,6 @@ footer div {
 }
 
 @media screen and (max-width: 480px) {
-
 
     /*========= MISE EN FORME GÉNÉRALE =========*/
     h2 {
@@ -689,7 +680,6 @@ footer div {
 
     
     /* ========= RÉSERVATION VELO ========= */
-
     #reservation-velo h3,  #station-fermee, #infoStation, #formulaireReservation, #recapitulatif-reservation {
         margin-top: 15px;
         margin-bottom: 15px;
