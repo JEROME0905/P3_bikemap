@@ -628,13 +628,6 @@ footer div {
         margin-bottom: 25px;
     }
 
-    
-
-
-
-
-
-
     /* ========= NOUS CONTACTER  ========= */
     .rectangle1 {
         width: 100%;
@@ -675,6 +668,10 @@ footer div {
         font-size: 40px;
     }
 
+    #reservation-velo h3, .carte-de-visite h3 {
+        font-size: 30px;
+    }
+
 
     /* ========= ACCUEIL =========*/
     .presentation-entreprise h1 {
@@ -690,43 +687,86 @@ footer div {
         margin-bottom: 60px;
     }
 
+    
+    /* ========= RÉSERVATION VELO ========= */
+
+    #reservation-velo h3,  #station-fermee, #infoStation, #formulaireReservation, #recapitulatif-reservation {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    #reservation-velo p, #infoStation span, #recapitulatif-reservation span, .form-reservation {
+        font-size: 14px;
+    }
+    hr {
+        margin-top: 0.5em;
+    }
+
+    #boutonReservation {
+        font-size: 16px;
+        margin-top: 18px ;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    #canvas {
+        width: 280;
+        height: 230px;
+    }
+
+    #signatureCanvas div {
+        width: 280px;
+    }
+
+    .btnCanvas {
+        font-size: 14px;
+    }
+
 
     /* ========= NOUS CONTACTER  =========*/
- 
     .rectangle1 p {
         font-size: 14px;
         margin-top: 30px;
     }
+
     #rectangle-under-carte-visite {
         width: 80%;
         height: 480px;
         margin-top: 50px;
         margin-bottom: 50px;
     }
+
     .info {
         flex-direction: column;
         align-items: flex-start;
     }
+
     .info p {
         margin: 10px 0;
     }
+
     #petit-rectangle-haut-gauche {
         display: none;
     }
+
+
     /*========= FOOTER =========*/
     footer {
         flex-direction: column;
     }
+
     footer h3 {
         font-size: 15px;
         width: 100%;
         margin-top: 10px;
         margin-bottom: 10px;
     }
+
     footer div {
         width: 100%;
         margin-bottom: 10px;
     }
+
     .reseaux-sociaux {
         height: 20px;
     }
