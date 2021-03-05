@@ -3,7 +3,6 @@
 }
 
 
-
 /* --- ==============================================================================
    --- MISE EN FORME GÉNÉRALE
    --- ============================================================================== */
@@ -201,6 +200,137 @@ video {
         opacity: 0;
     }
 
+}
+
+
+/* --- ==============================================================================
+   --- UTILISATION
+   --- ============================================================================== */
+
+#utilisation {
+    height: 90vh;
+    display: flex;
+}
+
+
+#utilisation .bloc1 {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100%;
+}
+
+#utilisation .bloc1 img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center; 
+}
+
+#utilisation .bloc2 {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grand-rectangle-under-slider {
+    height: 480px;
+    width: 720px;
+    background-color: #F2AC99;
+    position: relative;
+    box-shadow: 0 1px 5px 0 rgb(84 84 84 / 20%), 0 2px 2px 0 rgb(84 84 84 / 20%), 0 3px 1px -2px rgb(84 84 84 / 20%);
+    margin-top: 120px;
+}
+
+#petit-rectangle-haut-droit {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    z-index: 0;
+    width: 60px;
+    height: 60px;
+    background-color: #F2AC99;
+    box-shadow: 0 1px 5px 0 rgba(84, 84, 84, 0.2), 0 2px 2px 0 rgba(84, 84, 84, 0.2), 0 3px 1px -2px rgba(84, 84, 84, 0.2);
+}
+
+
+.chevrons {
+    position: absolute;
+    top: 208px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 12px;
+    color: white;
+    font-size: 25px;
+}
+
+#left_chevron, #right_chevron {
+    border: 1px solid #F2AC99;
+    background-color: rgba(199, 181, 181, 0.14);
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 14;
+    cursor: pointer;
+}
+
+#left_chevron {
+    margin-left: 2px;  
+}
+
+#right_chevron {
+    margin-right: 2px;
+}
+
+#slider-pause {
+    z-index: 14;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 40px;
+    position: absolute;
+    top: 208px;
+    margin-left: 12px;
+}
+
+#play, #pause {
+    /*display: none;*/
+    z-index: 99;
+}
+
+#slider:hover #pause  {
+    display: block;
+    color: #36F7B1;
+}
+
+#slider, #play, #pause {
+    cursor: pointer;
+}
+
+
+#slider{
+    height: 480px;
+    width: 720px;
+    background-color: rgb(25, 30, 47);
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    z-index: 13;
+    display: flex;
+}
+
+#slider img {
+    border: 1px solid red;
+    height: 480px;
+    width: 720px;
+    
 }
 
 
@@ -593,6 +723,29 @@ footer div {
     .navbar-collapse {
         margin-top: 5px;
     }
+
+
+    /* ========= UTILISATION ========= */
+
+    #utilisation {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    /* Suppression de l 'image */
+    .bloc1 .image-section-utilisation {
+        display: none;
+    }
+
+    #utilisation .bloc1, #utilisation .bloc2 {
+        width: 100%;
+    }
+
+    #utilisation .bloc2 {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
 
 
     /* ========= RÉSERVATION VELO ========= */
