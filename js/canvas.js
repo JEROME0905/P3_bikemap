@@ -1,116 +1,120 @@
-var Canvas = {
+class Canvas {
 
-	initialisation: function(reservationImpossibleElt, boutonReservation, signatureCanvas, btnAnnuler, nom, prenom) {
-		// Définition des variables du DOM
+
+
+    constructor(reservationImpossibleElt, boutonReservation, signatureCanvas, btnAnnuler, nom, prenom) {
+        // Les variables du DOM
 		this.reservationImpossibleElt = reservationImpossibleElt;
 		this.boutonReservationElt = boutonReservation;
 		this.signatureCanvasElt = signatureCanvas;
 		this.btnAnnulerElt = btnAnnuler;
 		this.inputNomElt = nom;
 		this.inputPrenomElt = prenom;
-		
-		// Initialisation du canvas
+
+		// Variables liées au canvas
 		this.canvasElt = document.getElementById("canvas");
 		this.ctx = this.canvasElt.getContext("2d");
+		this.dessin = false;
+    }
 
-		this.drawing = false;
-		canvasObj = this;
-	},
 
-	initCanvas: function() {
-		// Lancement de la signature canvas.
-		canvasObj.displayCanvas();
-		canvasObj.hiddenCanvas();
-		canvasObj.drawCanvas();
+	
+    initialisationCanvas() {
+		this.affichageDuCanvas();
+		this.cacherLeCanvasSiUtilisateurAppuiSurLeBtnAnnuler();
+		this.miseEnFormeDuTrait();
+	}
 
-	},
 
-	displayCanvas: function() {
+
+	affichageDuCanvas() {
 		// Affiche le canvas si quelqu'un clique sur le btn réserver du formulaire.
-		canvasObj.boutonReservationElt.addEventListener("click", function(event) {
-
-			if( (canvasObj.inputNomElt.value.length === 0) || (canvasObj.inputPrenomElt.value.length === 0) || 
-			(canvasObj.reservationImpossibleElt.textContent === "La station est fermée. Sélectionner une autre station" ) ||
-			(canvasObj.reservationImpossibleElt.textContent === "La station est ouverte mais aucun vélo n'est disponible") ) {
+		this.boutonReservationElt.addEventListener("click", function(event) {
+			if( (this.inputNomElt.value.length === 0) || (this.inputPrenomElt.value.length === 0) || 
+			(this.reservationImpossibleElt.textContent === "La station est fermée. Sélectionner une autre station" ) ||
+			(this.reservationImpossibleElt.textContent === "La station est ouverte mais aucun vélo n'est disponible") ) {
 				event.preventDefault;
 			} else {
-				canvasObj.signatureCanvasElt.style.display = "flex";
+				this.signatureCanvasElt.style.display = "flex";
 				// Sauvegarde du prenom et du nom que l'utilisateur à tapé
-				localStorage.setItem("Nom", canvasObj.inputNomElt.value);
-				localStorage.setItem("Prenom" , canvasObj.inputPrenomElt.value);
-	
+				localStorage.setItem("Nom", this.inputNomElt.value);
+				localStorage.setItem("Prenom" , this.inputPrenomElt.value);
 				// Effacement du canvas
-				canvasObj.ctx.clearRect(0,0,800,300);	
+				this.ctx.clearRect(0,0,800,300);	
 			}
+		}.bind(this));
+	}
 
-		});
-	},
 
-	hiddenCanvas: function () {
-		// Cache le canvas si l'utilisateur appui sur le btn annuler.
-		canvasObj.btnAnnulerElt.addEventListener("click", function() {
-			canvasObj.signatureCanvasElt.style.display = "none";
-		});
-	},
 
-	drawCanvas: function(){
-		// Mise en forme du trait 
-		canvasObj.ctx.strokeStyle = "white"; // Couleur du trait rouge
-    	canvasObj.ctx.lineWidth = 1; // Définition de la taille du trait
-		canvasObj.drawMouse(); 
-		canvasObj.drawTouchscreen();
-	},
+    cacherLeCanvasSiUtilisateurAppuiSurLeBtnAnnuler() {
+		this.btnAnnulerElt.addEventListener("click", function() {
+			this.signatureCanvasElt.style.display = "none";
+		}.bind(this));
+	}
 
-	drawMouse: function() {
+	
+
+    miseEnFormeDuTrait() {
+		this.ctx.strokeStyle = "white"; // Couleur du trait
+    	this.ctx.lineWidth = 1; // Taille du trait
+		this.dessinerAvecLaSouris(); 
+		this.dessinerAvecLeDoigt();
+	}
+
+
+
+	dessinerAvecLaSouris() {
 		// Btn de la souris enfoncé
-    	canvasObj.canvasElt.addEventListener("mousedown", function (e) {
-	        canvasObj.ctx.beginPath(); // Initialisation du tracé;
-	        canvasObj.ctx.moveTo(e.offsetX, e.offsetY); // Permet de savoir ou commence le tracé
-	        canvasObj.drawing = true;
-    	});
-    // Déplacement de la souris
-    	canvasObj.canvasElt.addEventListener("mousemove", function (e) {
-	      	// Si le bouton est enfoncé, dessine
-	        if (canvasObj.drawing === true)
-	            canvasObj.draw(e.offsetX, e.offsetY);
-		        // offsetX sauvegarde la position horizontale
-		        // offsetY sauvegarde la position verticale
+        this.canvasElt.addEventListener("mousedown", function (e) {
+	        this.ctx.beginPath(); // Initialisation du tracé;
+	        this.ctx.moveTo(e.offsetX, e.offsetY); // Permet de savoir ou commence le tracé
+	        this.dessin = true;
+    	}.bind(this));
+		// Déplacement de la souris
+		this.canvasElt.addEventListener("mousemove", function (e) {
+	      	// Si le bouton est enfoncé, on dessine
+	        if (this.dessin === true)
+            	this.dessiner(e.offsetX, e.offsetY);  // offsetX sauvegarde la position horizontale, offsetY sauvegarde la position verticale
 		        // Aucun décalage avec la souris  
-    	});
-    // Btn souris relaché
-    	canvasObj.canvasElt.addEventListener("mouseup", function (e) {
-      		canvasObj.drawing = false;
-    	});
-	},
+    	}.bind(this));
+		// Btn souris relaché
+		this.canvasElt.addEventListener("mouseup", function (e) {
+			this.dessin = false;
+		}.bind(this));
+	}
 
-	drawTouchscreen: function(){
+
+
+	dessinerAvecLeDoigt() {
 		// doigt appuyé sur l'écran
-	    canvasObj.canvasElt.addEventListener("touchstart", function (e) {
-	        canvasObj.drawing = true;
-	        canvasObj.ctx.beginPath();
-	        var touchX = e.touches[0].clientX - canvasObj.canvasElt.getBoundingClientRect().left;
-	        var touchY = e.touches[0].clientY - canvasObj.canvasElt.getBoundingClientRect().top;
-	        canvasObj.ctx.moveTo(touchX, touchY);
+	    this.canvasElt.addEventListener("touchstart", function (e) {
+	        this.dessin = true;
+	        this.ctx.beginPath();
+	        var touchX = e.touches[0].clientX - this.canvasElt.getBoundingClientRect().left;
+	        var touchY = e.touches[0].clientY - this.canvasElt.getBoundingClientRect().top;
+	        this.ctx.moveTo(touchX, touchY);
 	        // empeche le scroll de l'écran
 	        e.preventDefault();
-	    });
-
+	    }.bind(this));
 	    // le doigt se déplace sur l'écran
-	    canvasObj.canvasElt.addEventListener("touchmove", function (e) {
- 			var touchX = e.touches[0].clientX - canvasObj.canvasElt.getBoundingClientRect().left;
-	        var touchY = e.touches[0].clientY - canvasObj.canvasElt.getBoundingClientRect().top;
-		    if (canvasObj.drawing === true)
-		        canvasObj.draw(touchX, touchY);
+	    this.canvasElt.addEventListener("touchmove", function (e) {
+ 			var touchX = e.touches[0].clientX - this.canvasElt.getBoundingClientRect().left;
+	        var touchY = e.touches[0].clientY - this.canvasElt.getBoundingClientRect().top;
+		    if (this.dessin === true)
+            this.dessiner(touchX, touchY);
 		    e.preventDefault();
-	    });
+	    }.bind(this));
 	    // Le doigt se retire de l'écran
-	    canvasObj.canvasElt.addEventListener("touchend", function (e) {
-		    canvasObj.drawing = false;
-	    });
-	},
-
-	draw:function(x,y) {
-		canvasObj.ctx.lineTo(x,y); // Ajout du segment.
-	    canvasObj.ctx.stroke(); // dessine le contour du segment.
+	    this.canvasElt.addEventListener("touchend", function (e) {
+		    this.dessin = false;
+	    }.bind(this));
 	}
-};
+
+
+
+    dessiner (x, y) {
+		this.ctx.lineTo(x,y); // Ajout du segment.
+	    this.ctx.stroke(); // dessine le contour du segment.
+	}
+}

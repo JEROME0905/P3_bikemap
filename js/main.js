@@ -15,17 +15,28 @@ var maps = Object.create(Maps);
 maps.init('images/velo-vert.png','images/velo-rouge.png','images/velo-bleu.png',document.getElementById("adresse"),document.getElementById("nbr-places"),document.getElementById("nbr-velo-dispo"),document.getElementById("formulaireReservation"),document.getElementById("infoStation"),document.getElementById("station-fermee"), document.getElementById("reservation-impossible"),document.getElementById("nom"),document.getElementById("prenom"));
 
 // Mise en route de l'objet maps
-maps.initMaps();
+ maps.initMaps();
+
+
+/*let carte = new Carte('images/velo-vert.png','images/velo-rouge.png','images/velo-bleu.png',document.getElementById("adresse"),document.getElementById("nbr-places"),document.getElementById("nbr-velo-dispo"),document.getElementById("formulaireReservation"),document.getElementById("infoStation"),document.getElementById("station-fermee"), document.getElementById("reservation-impossible"),document.getElementById("nom"),document.getElementById("prenom"));
+
+carte.initilisationDeLaCarte();*/
+
+
+
 
 
 // Création d'un objet canvas
-var canvas = Object.create(Canvas);
+//var canvas = Object.create(Canvas);
 
 // Définition des variables de l'objet canvas
-canvas.initialisation(document.getElementById("reservation-impossible"),document.getElementById("boutonReservation"),document.getElementById("signatureCanvas"),document.getElementById("annuler"),document.getElementById("nom"),document.getElementById("prenom"));
+//canvas.initialisation(document.getElementById("reservation-impossible"),document.getElementById("boutonReservation"),document.getElementById("signatureCanvas"),document.getElementById("annuler"),document.getElementById("nom"),document.getElementById("prenom"));
 
 // Lancement de l'objet canvas
-canvas.initCanvas();
+//canvas.initCanvas();
+
+let canvas = new Canvas(document.getElementById("reservation-impossible"),document.getElementById("boutonReservation"),document.getElementById("signatureCanvas"),document.getElementById("annuler"),document.getElementById("nom"),document.getElementById("prenom"));
+canvas.initialisationCanvas();
 
 
 // Création d'un objet timer

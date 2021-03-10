@@ -18,6 +18,8 @@ function ajaxGet(url, callback)
 	req.send(null);
 };
 
+
+
 // Execute un appel AJAX POST
 // Prend en parametre l'URL cible, la donnée a envoyer et la fonction callback appelée en cas de succès 
 // Le parametre isJson permet d'indiquer si l'envoi concerne des données JSON
@@ -44,4 +46,3 @@ function ajaxPost(url, data, callback, isJson){
 		}
 		req.send(data);
 }
-

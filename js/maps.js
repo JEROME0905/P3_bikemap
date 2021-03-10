@@ -55,6 +55,8 @@ var Maps = {
 				zoomOffset: -1,
 				accessToken: 'pk.eyJ1IjoiamVyb21lNDVkd2pwMyIsImEiOiJja2w5dWpxYXkwcjV3MnJuMDJhcHJrcGF2In0.EOImOSC9SzgDUCy6OuxuQQ'
 			}).addTo(mymap);
+
+			
 			
 			// Ajout des marqueurs sur la carte 
 			for (element in obj.tabJcdecauxLyon) {
@@ -77,15 +79,21 @@ var Maps = {
 
 				var marker = L.marker([obj.tabJcdecauxLyon[element].position.lat,obj.tabJcdecauxLyon[element].position.lng],{ icon: myIcon }).addTo(mymap).on('click', onClick);
 				
+
+
+
+				/* ---------------------------------------------------------------------------------------------------------------------- */ 
 				function onClick() { 
 
-					// Récupération de la latitude et de la longitude du marker sur lequel on a cliqué.
+					// Récupération de la latitude du marker sur lequel on a cliqué.
 					// Transformation de ces donnés en chaine de caractère String.
 
 					obj.latLng = JSON.stringify(this.getLatLng());
+					console.log(obj.latLng);
 					obj.lat1 = obj.latLng.split(','); // Récupération de la latitude   
+					console.log(obj.lat1);
 					obj.latMarker = obj.lat1[0].split(':'); // Récupération des coordonnées de la latitude
-
+					console.log(obj.latMarker);
 					for (element in obj.tabJcdecauxLyon) {
 						if (obj.latMarker[1] === JSON.stringify(obj.tabJcdecauxLyon[element].position.lat)) {
 
@@ -103,13 +111,14 @@ var Maps = {
 								obj.updateDOM("","","","La station est fermée. Sélectionner une autre station");	
 						}
 					}
-
 					// Affichage du dernier prénom et nom tapé par l'utilisateur
 					obj.inputPrenomElt.value = localStorage.getItem("Prenom");
-					obj.inputNomElt.value = localStorage.getItem("Nom");
-
-					
+					obj.inputNomElt.value = localStorage.getItem("Nom");					
 				};
+				/* ---------------------------------------------------------------------------------------------------------------------- */	
+
+
+
 			}
 		});
 	},
