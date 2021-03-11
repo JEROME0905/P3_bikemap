@@ -1,4 +1,4 @@
-class Slide {
+class Slider {
 	
 
 	constructor (slidesElt, flecheGaucheElt, flecheDroiteElt, vitesseGauche, vitesseDroite, dernierePosition, compteur,temps,positionInitial,positionFinale,compteurFinal,play,pause) {
