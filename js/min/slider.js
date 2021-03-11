@@ -22,17 +22,17 @@ class Slide {
 
     initialisationSlider() {
 
-    	document.getElementById('slider-pause').addEventListener("click",this.miseEnPauseDuSlider.bind(this)); // Si clique sur logo pause arret du défilement automatique du slider
+    	document.getElementById('slider-pause').addEventListener("click",this.miseEnPauseDuSlider.bind(this)); // Si clique sur logo pause arrêt du défilement automatique du slider.
 	    
-		this.flecheGaucheElt.addEventListener("click", this.deplacerBlocDroite.bind(this)); // Si clique sur chevron gauche défilement des slides à gauche
+		this.flecheGaucheElt.addEventListener("click", this.deplacerBlocDroite.bind(this)); // Si clique sur chevron gauche défilement des slides à gauche.
 		
-		this.flecheDroiteElt.addEventListener("click", this.deplacerBlocGauche.bind(this)); // Si clique sur chevron droit défilement des slides à droite
+		this.flecheDroiteElt.addEventListener("click", this.deplacerBlocGauche.bind(this)); // Si clique sur chevron droit défilement des slides à droite.
 		
-		document.addEventListener("keydown", function (e) { // Si appui sur les fleches gauche ou droite du clavier defilement des slides
+		document.addEventListener("keydown", function (e) { // Si appui sur les flèches gauche ou droite du clavier défilement des slides.
 		    this.recuperationCodeClavier(e.code);
 		}.bind(this));
 
-		this.slideAuto = setInterval(this.deplacerBlocGauche,this.temps); // 	Défilement automatique des slides.
+		this.slideAuto = setInterval(this.deplacerBlocGauche,this.temps); // Défilement automatique des slides.
 	}
 
 
@@ -52,7 +52,7 @@ class Slide {
 
 	deplacerBlocDroite() {
 		if (this.dernierePosition === this.positionInitial) {
-			// Ne rien faire pour une fois		
+			// Ne rien faire pour une fois.		
 	    }
 	    else{
 	    	this.slidesElt.style.left = (this.dernierePosition + this.vitesseDroite) + "%";
@@ -79,7 +79,7 @@ class Slide {
 	this.compteur++;
 		if (this.compteur=== this.compteurFinal) {
 			this.slideAuto = setInterval(this.deplacerBlocDroite,this.temps);
-			this.compteur=0;
+			this.compteur = 0;
 			this.play.style.display = "none";
 			this.pause.style.display = "block";
 		} 
@@ -89,5 +89,4 @@ class Slide {
 			this.play.style.display = "block";
 		}
 	}
-
 }
