@@ -40,10 +40,14 @@ canvas.initialisationCanvas();
 
 
 // Création d'un objet timer
-var timer = Object.create(Timer);
+//var timer = Object.create(Timer);4
 
 // Définition des variables de l'objet timer
-timer.init(document.getElementById("reserver"),document.getElementById("nom-station"),document.getElementById("nom-utilisateur"),document.getElementById("signatureCanvas"),document.getElementById("lastTimes"),20);
+//timer.init(document.getElementById("reserver"),document.getElementById("nom-station"),document.getElementById("nom-utilisateur"),document.getElementById("signatureCanvas"),document.getElementById("lastTimes"),20);
 
 // Lancement de l'objet timer
-timer.initTimer();
+//timer.initTimer();
+
+let timer = new Timer(document.getElementById("reserver"),document.getElementById("nom-station"),document.getElementById("nom-utilisateur"),document.getElementById("signatureCanvas"),document.getElementById("lastTimes"),20);
+
+timer.initialisationTimer();
