@@ -5,10 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- SEO -->
-    <meta name="description"
-        content="L'entreprise Easy Bike vous propose la réservation de vélo en ligne dans la ville de Lyon afin de parcourir les richesses dont elle recèle.">
-    <meta name="keywords"
-        content="Easy Bike, Easy Bike Lyon, réservation de vélo Lyon, location de vélo Lyon, location vélo de route lyon, location velo lyon dimanche">
+    <meta name="description" content="L'entreprise Easy Bike vous propose la réservation de vélo en ligne dans la ville de Lyon afin de parcourir les richesses dont elle recèle.">
+    <meta name="keywords" content="Easy Bike, Easy Bike Lyon, réservation de vélo Lyon, location de vélo Lyon, location vélo de route lyon, location velo lyon dimanche">
     <meta name="author" content="Le Bail Jérôme">
     <!-- Métadonnées pour Facebook et Twitter -->
     <meta property="og:url" content="https://jerome0905.github.io/P3_bikemap/" />
@@ -22,25 +20,17 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="images/Logo Easy-Bike.ico" type="image/x-icon">
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <!-- Mes feuilles de style -->
     <link rel="stylesheet" href="css/police.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Easy Bike - Lyon</title>
 </head>
-
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -114,18 +104,14 @@
             <div id="maps"></div>
             <div id="reservation-velo">
                 <h3>Réserver votre vélo</h3>
-
                 <div id="station-fermee">
-                    <p id="reservation-impossible" class="form-reservation">LA STATION EST FERMÉE. SÉLECTIONNER UNE
-                        AUTRE STATION</p>
+                    <p id="reservation-impossible" class="form-reservation">LA STATION EST FERMÉE. SÉLECTIONNER UNE AUTRE STATION</p>
                 </div>
-
                 <div id="infoStation">
                     <p class="form-reservation">Adresse : <span id="adresse"></span></p>
                     <p class="form-reservation">Nombre total de vélos : <span id="nbr-places"></span></p>
                     <p class="form-reservation">Vélos disponibles : <span id="nbr-velo-dispo"></span></p>
                 </div>
-
                 <div id="formulaireReservation">
                     <label for="nom" class="form-reservation"> Nom : </label>
                     <input type="text" name="nom" id="nom" class="form-reservation" placeholder="Nom">
@@ -195,21 +181,14 @@
             </a>
         </div>
     </footer>
-
     <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="js/ajax.js"></script>
     <script src="js/maps.js"></script>
-
     <!--<script type="text/javascript" src="js/new/slider.js"></script>-->
     <script src="js/min/Canvas.min.js"></script>
-    <script src="js/timer.js"></script>
+    <script src="js/min/Timer.js"></script>
     <script src="js/main.js"></script>
 </body>
-
 </html>
