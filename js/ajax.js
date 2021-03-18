@@ -1,48 +1,19 @@
-/*Fonction ajax qui permet de récupérer des donneés*/
-function ajaxGet(url, callback)
-{
-	var req = new XMLHttpRequest();
-	req.open("GET", url);
-	req.addEventListener("load", function (){
-		if (req.status >= 200 && req.status < 400) {
-			// Appelle la focntion callback en lui passant la reponse de la requête 
-				callback(req.responseText);
-		}
-		else {
-			console.error(req.status + " " + req.statusText + " " + url);
-		}
-	});
-	req.addEventListener("error", function() {
-		console.error("Erreur réseau avec l'URL" + url);
-	});
-	req.send(null);
-};
+class Ajax {
+    get(url, callback) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", url); // Définition du type de requête.
+        xhr.send(null); // Envoie de la requête.
 
-
-
-// Execute un appel AJAX POST
-// Prend en parametre l'URL cible, la donnée a envoyer et la fonction callback appelée en cas de succès 
-// Le parametre isJson permet d'indiquer si l'envoi concerne des données JSON
-function ajaxPost(url, data, callback, isJson){
-	var req = new XMLHttpRequest();
-	req.open("POST", url);
-	req.addEventListener("load", function (){
-		if (req.status >= 200 && req.status < 400) {
-			// Appelle la fonction callback en lui passant la réponse de la requête
-				callback(req.responseText);
-		} else {
-			console.error(req.status + " " + req.statusText + " " + url);
-		}
-
-	});
-	req.addEventListener("error", function () {
-		console.log("Erreur réseau avec l'URL " + url);
-	});
-		if (isJson) {
-			// Définit le contenu de la requete comme etant du JSON
-			req.setRequestHeader("Content-Type", "application/json");
-			// Transforme la donnée du format JSON vers le format texte avant l'envoi
-			data = JSON.stringify(data);
-		}
-		req.send(data);
+    // L'évènement onload se déclenche lorsqu'une XMLHttpRequesttransaction se termine avec succès.
+        xhr.onload = function() {
+            if (xhr.status != 200)
+                alert("La requête a échoué");
+            else
+                callback(xhr.responseText);
+        }
+    // onerror se déclenche lorsque la requête n’a pas pu aboutir.
+        xhr.onerror = function() {
+            alert("Erreur " + xhr.status + " : " + xhr.statusText); // On affiche le statut et le message correspondant de l'erreur.
+        }
+    }    
 }

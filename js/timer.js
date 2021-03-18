@@ -1,155 +1,171 @@
-var Timer = {
+class Timer {
 
-	init:function (reserver, nomStation, nomUtilisateur, reserverCanvas, lastTimes, minutes) {
+	constructor(reserver, nomStation, nomUtilisateur, reserverCanvas, dernierTemps, minutes) {
 		// Définition des variables du DOM.
 		this.reserverElt = reserver;
 		this.nomStationElt = nomStation;
 		this.nomUtilisateurElt = nomUtilisateur;
 		this.reserverCanvasElt = reserverCanvas;
-		this.lastTimesElt = lastTimes;
+		this.dernierTempsElt = dernierTemps;
 
-		// Définitions des variables pour faire le compteur. 
+		// Boolean pour savoir si l'utilisateur vient d'actualiser la page web.
+		this.actualisationPageWeb;
+
+		// Affiches les minutes et les secondes restantes. 
 		this.minutes = minutes;
-		this.secondes = 00;
+		this.secondes = 0o0;
 		  
-		// Défintion de la variable qui sauvegarder le temps imparti.
-		this.newTimes = minutes;
+		// Contient le temps accordé à l'utilisateur (20 minutes) pour que celui-ci puisse retirer son vélo de la station.
+		this.tempsReservation = minutes;
 
-		// Définition de la variable compteur pour relancer le compteur au début si nouvelle réservation.
+		// Permet de savoir si l'utilisateur a relancé une nouvelle réservation avant la fin du compte à rebours de l'ancienne réservation.
 		this.compteur = 0;
 
-		// Définition de la variable qui va lancer l'animation pour le compteur.
+		// Définition de la variable qui va lancer le compte à rebours.
 		this.chrono = "";
 
-		// Défintion des variables qui vont contenir les informations définies dans le formulaire.
-		this.nameStation = "";
+		// Les variables qui vont contenir les informations définies dans le formulaire.
+		this.nomStation = "";
 		this.nom = "";
 		this.prenom = "";
 
-		objTimer = this;
+		// Création d'une instance de la classe Ajax pour récupérer les donneés des stations de la ville de Lyon. 
+		this.ajax = new Ajax();
+	}
 
-	},
 
-	dataJcdecaux: function() {
-		ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=d9ce4a4ff8aee76cf49b9b8394047ea940b54c4d",function(reponse) {
-			// Récupération des données de la ville de Lyon.
-			var tabJcdecauxLyon = JSON.parse(reponse);
-			// Récupération de l'adresse de la gare contenu dans le formulaire.
-			var adresse = document.getElementById("adresse").textContent;
+	
+	initialisationTimer() {
+		this.actualisationPageWeb = 0;
+		this.actualisation();
+		this.reserverElt.addEventListener("click", this.validationReservation.bind(this));
+	}
 
-			for (element in obj.tabJcdecauxLyon) {
-				// Si l'adresse saisi dans le formulaire correspond à une adresse dans la ville de Lyon récupération du nom de la gare.
-				if (adresse === tabJcdecauxLyon[element].address) {
-					objTimer.nameStation = tabJcdecauxLyon[element].name;
-					objTimer.nameStation = objTimer.nameStation.split('-');
-					// sauvegarde du nom de la station
-					objTimer.nameStation = objTimer.nameStation[1];
-					sessionStorage.setItem("nameStation",objTimer.nameStation);
+
+
+	validationReservation() {
+	// Récupération du nom et du prénom saisi par l'utilisateur dans le formulaire de réservation
+		this.nom = document.getElementById("nom").value;
+		this.prenom = document.getElementById("prenom").value;
+		sessionStorage.setItem("nom",this.nom);
+		sessionStorage.setItem("prenom",this.prenom);
+
+	// Si clique sur btn réserver du canvas celui n'est plus affiché.
+		this.reserverCanvasElt.style.display = "none";
+
+	// Si l'utilisateur vient d'actualiser la page web et relance une réservation => suppression de l'animation en cours et ré-initialisation des variables du temps.
+	// Si l'utilisateur relance une réservation avant la fin du compte à rebours ou une fois le compte à rebours finit => suppression de l'animation en cours et ré-initialisation des variables du temps.
+		if ( (this.actualisationPageWeb > 0) || (this.compteur > 0) )  {
+			this.actualisationPageWeb = 0;
+			this.minutes = this.tempsReservation;
+			this.secondes = 0o0;
+			clearInterval(this.chrono); // Arrête l'animation
+		}
+		this.dataJcdecaux();
+		this.compteur++;
+	} 
+
+
+
+	actualisation() {
+		if (sessionStorage.getItem("actualiser") === "oui") {
+		// Récupération des éléments contenus dans le session storage pour relancer l'animation.
+			this.nomStation = sessionStorage.getItem("nomStation");
+			this.nom = sessionStorage.getItem("nom");
+			this.prenom = sessionStorage.getItem("prenom");
+			this.minutes = sessionStorage.getItem("minutes");
+			this.secondes = sessionStorage.getItem("secondes");
+			this.chrono = setInterval(this.diminuerCompteur.bind(this), 1000);
+			this.actualisationPageWeb++;
+		}
+	}
+
+
+
+	dataJcdecaux() {
+
+		this.ajax.get("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=d9ce4a4ff8aee76cf49b9b8394047ea940b54c4d",function(reponse) {
+			
+		// Récupération des données de la ville de Lyon.
+			let tabJcdecauxLyon = JSON.parse(reponse);
+
+		// Récupération de la latitude et de la longitude du marker sur lequel le client a cliqué pour pouvoir récupérer le nom de la station.
+			let latitudeLongitude =  sessionStorage.getItem("latitudeLongitude");
+
+			for (let element in tabJcdecauxLyon) {
+				if (latitudeLongitude === JSON.stringify(tabJcdecauxLyon[element].position)) {  
+					this.nomStation = tabJcdecauxLyon[element].name;
+					this.nomStation = this.nomStation.split('-');
+				// Sauvegarde du nom de la station
+					this.nomStation = this.nomStation[1];
+					sessionStorage.setItem("nomStation",this.nomStation);
 				}
 			}
-			// Lancement de l'animation qui va permetre de mettre en place le temps imparti de 20 minutes.
-			objTimer.chrono = setInterval(objTimer.diminuerCompteur, 1000); 
-		});
-	},
-
-	initTimer:function() {
-			// Initialisation de la variable time;
-			var time = 0;
-
-		if (sessionStorage.getItem("actualiser") === "oui") {
-			// Recuperation des animations contenu dans le session storage pour relancer l'animation
-			objTimer.nameStation = sessionStorage.getItem("nameStation");
-			objTimer.nom = sessionStorage.getItem("nom");
-			objTimer.prenom = sessionStorage.getItem("prenom");
-			objTimer.minutes = sessionStorage.getItem("minutes");
-			objTimer.secondes = sessionStorage.getItem("secondes");
-			objTimer.chrono = setInterval(objTimer.diminuerCompteur, 1000);
-			time++;
-		}
-
-		objTimer.reserverElt.addEventListener("click",function() {
-			// Récupération du nom et du prenom saisi par l'utilisateur dans le formulaire de réservation
-			objTimer.nom = document.getElementById("nom").value;
-			objTimer.prenom = document.getElementById("prenom").value;
-			sessionStorage.setItem("nom",objTimer.nom);
-			sessionStorage.setItem("prenom",objTimer.prenom);
-
-			// Si clique sur btn réserver du canvas celui n'est plus affiché.
-			objTimer.reserverCanvasElt.style.display = "none";
-
-
-			// Si nouvelle réservation arrète animation session storage.	
-			if (time > 0) {
-				time = 0;
-				objTimer.minutes = objTimer.newTimes;
-				objTimer.secondes = 00;
-				clearInterval(objTimer.chrono);
-			}
-
-			// Si nouvelle réservation supprime ancienne animation.
-			if (objTimer.compteur > 0) {
-				objTimer.minutes = objTimer.newTimes;
-				objTimer.secondes = 00;
-				clearInterval(objTimer.chrono);
-			}
-
-			objTimer.dataJcdecaux();
-			objTimer.compteur++;
-		});
-	},
+			// Lancement de l'animation qui va permettre de mettre en place le temps imparti de 20 minutes.
+			this.chrono = setInterval(this.diminuerCompteur.bind(this), 1000); // Le temps est exprimé en milliseconde.
+		}.bind(this));
+	}
 
 
 
-	diminuerCompteur: function() {
-		var lastTimes = "";
-
+	diminuerCompteur() {
+		let dernierTemps = "";
 		// Si le compte à rebours se termine
-		if((objTimer.secondes === 00) & (objTimer.minutes === 00)) {
-			// Mise à jour du DOM
-			objTimer.nomStationElt.textContent = "";
-			objTimer.nomUtilisateurElt.textContent = "";
-			
-			objTimer.lastTimesElt.textContent = "";
-			// Supression de l'animation.
-			clearInterval(objTimer.chrono);
-			// Le session storage ne se lancera pas car plus de compte à rebour
-			// Rien à sauvegarde 
-			sessionStorage.setItem("actualiser","non");
-		}
-		else if(objTimer.secondes === 00) {
-			// Mise à jour des minutes et des secondes
-			objTimer.minutes = objTimer.minutes -1;
-			objTimer.secondes = 59;
-
-			// Mise à jour du session storage
-			sessionStorage.setItem("actualiser","oui");
-			sessionStorage.setItem("minutes",objTimer.minutes);
-			sessionStorage.setItem("secondes",objTimer.secondes);
-
-			// Mise à jour du compte à rebours
-			lastTimes = objTimer.minutes + " min " + objTimer.secondes +"s";
-
-			// Mise à jour du DOM  
-			objTimer.nomStationElt.textContent = objTimer.nameStation;
-			objTimer.nomUtilisateurElt.textContent = objTimer.prenom + " " + objTimer.nom;
-			objTimer.lastTimesElt.textContent = lastTimes; 
-		} 
+		if((this.secondes === 0o0) & (this.minutes === 0o0))
+			this.finDuCompteArebours();
+		else if (this.secondes === 0o0)
+			this.miseAjourDesMinutesEtDesSecondes(dernierTemps);
 		else {
-			// Mise à jour des secondes
-			objTimer.secondes = objTimer.secondes -1;
-			
-			// Mise à jour du session storage
-			sessionStorage.setItem("actualiser","oui");
-			sessionStorage.setItem("secondes",objTimer.secondes);
-			sessionStorage.setItem("minutes",objTimer.minutes);
-
-			// Mise à jour du compte à rebours
-			lastTimes = objTimer.minutes + " min " + objTimer.secondes +"s";
-
-			// Mise à jour du DOM  
-			objTimer.nomStationElt.textContent = objTimer.nameStation;
-			objTimer.nomUtilisateurElt.textContent = objTimer.prenom + " " + objTimer.nom;
-			objTimer.lastTimesElt.textContent = lastTimes; 
+			this.miseAjourDesSecondes(dernierTemps);
 		}
-	},
-};
+	}
+
+
+
+	finDuCompteArebours() {
+	// Mise à jour du DOM.
+		this.nomStationElt.textContent = "";
+		this.nomUtilisateurElt.textContent = "";
+		this.dernierTempsElt.textContent = "";
+	// Suppression de l'animation.
+		clearInterval(this.chrono);
+	// Rien à sauvegarder dans le sessionStorage. 
+		sessionStorage.setItem("actualiser","non");
+	}
+
+
+
+	miseAjourDesMinutesEtDesSecondes(dernierTemps) {
+		this.minutes = this.minutes -1;
+		this.secondes = 59;
+		this.miseAjourSessionStorage();
+		dernierTemps = this.minutes + " min " + this.secondes + "s";
+		this.miseAjourDuDom(dernierTemps);
+	}
+
+
+
+	miseAjourDesSecondes(dernierTemps) {
+		this.secondes = this.secondes -1;
+		this.miseAjourSessionStorage();
+	// Mise à jour du compte à rebours.
+		dernierTemps = this.minutes + " min " + this.secondes + "s";
+		this.miseAjourDuDom(dernierTemps);
+	}
+
+
+
+	miseAjourSessionStorage() {
+		sessionStorage.setItem("actualiser","oui");
+		sessionStorage.setItem("secondes",this.secondes);
+		sessionStorage.setItem("minutes",this.minutes);
+	}
+
+
+
+	miseAjourDuDom(dernierTemps) {
+		this.nomStationElt.textContent = this.nomStation;
+		this.nomUtilisateurElt.textContent = this.prenom + " " + this.nom;
+		this.dernierTempsElt.textContent = dernierTemps;
+	}
+}
