@@ -81,18 +81,23 @@
         <div class="bloc2">
             <div class="grand-rectangle-under-slider">
                 <div id="slider">
-                    <img src="slider/Slide-01.jpg" alt="">
-                    <img src="slider/Slide-02.jpg" alt="">
-                    <img src="slider/Slide-03.jpg" alt="">
-                    <img src="slider/Slide-04.jpg" alt="">
-                    <img src="slider/Slide-05.jpg" alt="">
+                    <div id="slides">
+                        <img src="slider/Slide-01.jpg" alt="Slide de présentation du site web Easy Bike">
+                        <img src="slider/Slide-02.jpg" alt="Slide expliquant à quoi correspondent les différentes icônes de vélo sur la carte">
+                        <img src="slider/Slide-03.jpg" alt="Slide qui explique comment remplir le formulaire de réservation d'un vélo">
+                        <img src="slider/Slide-04.jpg" alt="Slide qui explique comment signer électroniquement la réservation">
+                        <img src="slider/Slide-05.jpg" alt="Slide montrant le récpitulatif des informations de réservation de l'utilisateur">
+                    </div>
                 </div>
                 <div id="petit-rectangle-haut-droit"></div>
                 <div class="chevrons">
                     <div id="left_chevron"><i class="fas fa-chevron-left"></i></div>
                     <div id="right_chevron"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                <div id="slider-pause"><i class="far fa-pause-circle" id="pause"></i><i class="fas fa-play" id="play"></i></div>
+                <div id="slider-pause">
+                    <i class="far fa-pause-circle" id="pause" title="Arrêter le défilement automatique du diaporama"></i>
+                    <i class="fas fa-play" id="play" title="Relancer le défilement automatique du diaporama"></i>
+                </div>
             </div>
         </div>
     </section>
@@ -185,10 +190,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="js/min/Ajax.min.js"></script>
+    <script src="js/min/Slider.js"></script>
     <script src="js/min/Carte.min.js"></script>
-    <!--<script type="text/javascript" src="js/new/slider.js"></script>-->
     <script src="js/min/Canvas.min.js"></script>
     <script src="js/min/Timer.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/min/main.min.js"></script>
 </body>
 </html>

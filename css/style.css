@@ -257,7 +257,7 @@ video {
 
 .chevrons {
     position: absolute;
-    top: 208px;
+    top: 220px;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -287,32 +287,42 @@ video {
     margin-right: 2px;
 }
 
+
+/* Mise en forme des boutons pause et play */
 #slider-pause {
-    z-index: 14;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    font-size: 40px;
     position: absolute;
-    top: 208px;
+    top: 220px;
+    left: 340px;
+    height: 40px;
+    width: 40px;
+    font-size: 40px;
     margin-left: 12px;
+    color: white;
+    z-index: 15;
+    display: none;
 }
+
+
+.grand-rectangle-under-slider:hover #slider-pause {
+	display: block;
+	cursor: pointer;
+}
+
 
 #play, #pause {
-    /*display: none;*/
-    z-index: 99;
-}
-
-#slider:hover #pause  {
-    display: block;
-    color: #36F7B1;
-}
-
-#slider, #play, #pause {
     cursor: pointer;
 }
+
+
+#play {
+	display:none;
+}
+
+
+#pause {
+	display:block;
+}
+
 
 
 #slider{
@@ -324,13 +334,21 @@ video {
     bottom: 12px;
     z-index: 13;
     display: flex;
+    /* cache les éléments qui dépassent du conteneur */
+    overflow: hidden;
+}
+
+#slides {
+    position: relative;
+	left:0%;
+	width: 500%;
+	display: flex;
+    z-index: 13;
 }
 
 #slider img {
-    border: 1px solid red;
     height: 480px;
     width: 720px;
-    
 }
 
 
@@ -737,12 +755,16 @@ footer div {
         display: none;
     }
 
+    #utilisation .bloc1{
+        background: rgb(25, 30, 47);
+        color: white;
+    }
+
     #utilisation .bloc1, #utilisation .bloc2 {
         width: 100%;
     }
 
     #utilisation .bloc2 {
-        margin-top: 100px;
         margin-bottom: 100px;
     }
 

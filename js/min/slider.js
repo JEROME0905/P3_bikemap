@@ -21,7 +21,6 @@ class Slider {
 
 
     initialisationSlider() {
-
     	document.getElementById('slider-pause').addEventListener("click",this.miseEnPauseDuSlider.bind(this)); // Si clique sur logo pause arrêt du défilement automatique du slider.
 	    
 		this.flecheGaucheElt.addEventListener("click", this.deplacerBlocDroite.bind(this)); // Si clique sur chevron gauche défilement des slides à gauche.
@@ -32,7 +31,7 @@ class Slider {
 		    this.recuperationCodeClavier(e.code);
 		}.bind(this));
 
-		this.slideAuto = setInterval(this.deplacerBlocGauche,this.temps); // Défilement automatique des slides.
+		this.slideAuto = setInterval(this.deplacerBlocGauche.bind(this),this.temps); // Défilement automatique des slides.
 	}
 
 
@@ -52,7 +51,8 @@ class Slider {
 
 	deplacerBlocDroite() {
 		if (this.dernierePosition === this.positionInitial) {
-			// Ne rien faire pour une fois.		
+			this.dernierePosition = this.positionFinale;
+			this.slidesElt.style.left = this.dernierePosition + "%";
 	    }
 	    else{
 	    	this.slidesElt.style.left = (this.dernierePosition + this.vitesseDroite) + "%";
@@ -78,7 +78,7 @@ class Slider {
 	miseEnPauseDuSlider() {
 	this.compteur++;
 		if (this.compteur=== this.compteurFinal) {
-			this.slideAuto = setInterval(this.deplacerBlocDroite,this.temps);
+			this.slideAuto = setInterval(this.deplacerBlocGauche.bind(this),this.temps);
 			this.compteur = 0;
 			this.play.style.display = "none";
 			this.pause.style.display = "block";
