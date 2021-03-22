@@ -35,9 +35,9 @@ h2 {
    --- HEADER
    --- ============================================================================== */
 header {
-    position: fixed;
+    /*position: fixed;
     top: 0px;
-    z-index: 9999;
+    z-index: 9999;*/
     width: 100%;
     background-color: rgb(25, 30, 47);
     box-shadow: 0 1px 5px 0 rgba(84, 84, 84, 0.2), 0 2px 2px 0 rgba(84, 84, 84, 0.2), 0 3px 1px -2px rgba(84, 84, 84, 0.2);
@@ -118,7 +118,6 @@ header {
    --- ACCUEIL
    --- ============================================================================== */
 #accueil {
-    margin-top: 51px;
     position: relative;
     height: 100vh;
 }
@@ -199,7 +198,6 @@ video {
     100% {
         opacity: 0;
     }
-
 }
 
 
@@ -322,7 +320,6 @@ video {
 #pause {
 	display:block;
 }
-
 
 
 #slider{
@@ -735,7 +732,6 @@ footer div {
     /* Lien menu header */
     .navbar-nav a {
         font-size: 12px;
-        margin-top: 8px;
     }
 
     .navbar-collapse {
@@ -750,7 +746,7 @@ footer div {
         height: auto;
     }
     
-    /* Suppression de l 'image */
+    /* Suppression de l'image */
     .bloc1 .image-section-utilisation {
         display: none;
     }
@@ -768,6 +764,38 @@ footer div {
         margin-bottom: 100px;
     }
 
+
+    #petit-rectangle-haut-droit {
+        display: none;
+    }
+
+    /* Changement de la taille du slider */
+
+    .grand-rectangle-under-slider {
+        height: 600px;
+        width: 960px;
+    }
+
+    #slider{
+        height: 600px;
+        width: 960px;
+    }
+    
+    #slider img {
+        height: 600px;
+        width: 960px;
+    }
+
+    .chevrons {
+        top: 280px;
+    }
+
+    #slider-pause {
+        top: 280px;
+        left: 460px;
+    }
+    
+    
 
 
     /* ========= RÉSERVATION VELO ========= */
@@ -813,22 +841,86 @@ footer div {
     }
 }
 
-@media screen and (max-width: 770px) {
 
+@media screen and (max-width: 1024px) {
+
+    /* ========= UTILISATION ========= */
+
+    /* Changement de la taille du slider */
+    .grand-rectangle-under-slider {
+        height: 480px;
+        width: 720px;
+        margin-right: 12px;
+    }
+
+    #slider{
+        height: 480px;;
+        width: 720px;
+    }
+    
+    #slider img {
+        height: 480px;;
+        width: 720px;
+    }
+
+    .chevrons {
+        top: 220px;
+    }
+
+    #slider-pause {
+        top: 220px;
+        left: 340px;
+    }
+}
+
+
+
+@media screen and (max-width: 770px) {
     /* =========ACCUEIL =========*/
     .presentation-entreprise h1 {
         font-size: 80px;
     }
 
+
+    /* ========= UTILISATION ========= */
+    .grand-rectangle-under-slider {
+        height: 700px;
+        width: 460px;
+    }
+
+    #slider{
+        height: 700px;
+        width: 460px;
+        left: 0px;
+        bottom: 0px;
+    }
     
+    #slider img {
+        height: 700px;
+        width: 460px;
+    }
+
+    .chevrons {
+        top: 330px;
+        margin-left: 0;
+    }
+
+    #slider-pause {
+        top: 330px;
+        left: 218px;
+    }
+
+
     /*========= FOOTER =========*/
     .reseaux-sociaux {
         padding: 0 35px;
     }
 }
 
-@media screen and (max-width: 480px) {
 
+
+
+@media screen and (max-width: 480px) {
     /*========= MISE EN FORME GÉNÉRALE =========*/
     h2 {
         font-size: 40px;
@@ -848,12 +940,52 @@ footer div {
         font-size: 15px;
     }
 
-    
     .presentation-entreprise a  {
         margin-bottom: 60px;
     }
 
+
+    /* ========= UTILISATION ========= */
+    #utilisation .bloc2  {
+        margin-bottom: 0;
+    }
+
+    .grand-rectangle-under-slider {
+        height: auto;
+        width: 100%;
+        margin-right: 0;
+        margin-top: 0;
+    }
+
+    #slider{
+        height: auto;
+        width: 100%; 
+        position: initial;
+    }
     
+    #slider img {
+        height: auto;
+        width: 100%;
+    }
+
+    .chevrons {
+        top: 50%;
+        font-size: 15px;
+    }
+
+    #left_chevron, #right_chevron {
+        width: 30px;
+        height: 30px;
+    }
+
+    #slider-pause {
+        top: 50%;
+        left: 46%;
+        margin-left: 0;
+        font-size: 30px;
+    }
+    
+
     /* ========= RÉSERVATION VELO ========= */
     #reservation-velo h3,  #station-fermee, #infoStation, #formulaireReservation, #recapitulatif-reservation {
         margin-top: 15px;
