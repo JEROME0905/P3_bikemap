@@ -12,4 +12,7 @@ window.addEventListener('load', function () {
 
     let timer = new Timer(document.getElementById("reserver"),document.getElementById("nom-station"),document.getElementById("nom-utilisateur"),document.getElementById("signatureCanvas"),document.getElementById("lastTimes"),20);
     timer.initialisationTimer(); // Lancement de l'objet timer.
+
+    let imagePaysageVersPortrait = new ImagePaysageVersPortrait(document.getElementsByClassName("imagesSlider"), ["slider/paysage/Slide-01.jpg", "slider/paysage/Slide-02.jpg", "slider/paysage/Slide-03.jpg", "slider/paysage/Slide-04.jpg", "slider/paysage/Slide-05.jpg"], ["slider/portrait/Slide-01.jpg", "slider/portrait/Slide-02.jpg", "slider/portrait/Slide-03.jpg", "slider/portrait/Slide-04.jpg", "slider/portrait/Slide-05.jpg"]);
+    imagePaysageVersPortrait.initialisationImagePaysageVersPortrait(); // Lancement de L'objet imagePaysageVersPortrait.
 });
