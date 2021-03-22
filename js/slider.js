@@ -1,93 +1,92 @@
-var Slide = {
+class Slider {
 	
-	// Initisalisation des variables de l'objet
-	initialisation: function(slidesElt, flecheGaucheElt, flecheDroiteElt, vitesseGauche, vitesseDroite, lastPosition, compteur,time,initialPosition,finalPosition,finalCompteur,play,pause) {
+
+	constructor (slidesElt, flecheGaucheElt, flecheDroiteElt, vitesseGauche, vitesseDroite, dernierePosition, compteur,temps,positionInitial,positionFinale,compteurFinal,play,pause) {
 		this.slidesElt = slidesElt;
 	 	this.flecheGaucheElt = flecheGaucheElt;
 	 	this.flecheDroiteElt = flecheDroiteElt;
 	 	this.vitesseGauche = vitesseGauche;
 	 	this.vitesseDroite = vitesseDroite;
-	 	this.lastPosition = lastPosition;
+	 	this.dernierePosition = dernierePosition;
 	 	this.compteur = compteur;
-	 	this.time = time;
-	 	this.initialPosition = initialPosition;
-	 	this.finalPosition = finalPosition;
-	 	this.finalCompteur = finalCompteur;
+	 	this.temps = temps;
+	 	this.positionInitial = positionInitial;
+	 	this.positionFinale = positionFinale;
+	 	this.compteurFinal = compteurFinal;
 	 	this.slideAuto;
 	 	this.play= play;
 	 	this.pause=pause;
-	 	that = this;
-    },
+    }
 
-    // Mise en route de l'objet
-    initSlide: function () {
-    	// Si clique sur logo pause arret du défilement automatique du slider
-    	document.getElementById('slider-pause').addEventListener("click",that.sliderPause);
+
+
+    initialisationSlider() {
+    	document.getElementById('slider-pause').addEventListener("click",this.miseEnPauseDuSlider.bind(this)); // Si clique sur logo pause arrêt du défilement automatique du slider.
 	    
-	    // Si clique sur chevron gauche défilement des slides a gauche
-	    that.flecheGaucheElt.addEventListener("click", that.deplacerBlocDroite);
-
-		 // Si clique sur chevron droit défilement des slides a droite
-		that.flecheDroiteElt.addEventListener("click", that.deplacerBlocGauche);
+		this.flecheGaucheElt.addEventListener("click", this.deplacerBlocDroite.bind(this)); // Si clique sur chevron gauche défilement des slides à gauche.
 		
-		// Si appui sur les fleches gauche ou droite du clavier defilement des slides
-		document.addEventListener("keydown", function (e) {
-		    that.slideToMove(e.code);
-		});
+		this.flecheDroiteElt.addEventListener("click", this.deplacerBlocGauche.bind(this)); // Si clique sur chevron droit défilement des slides à droite.
+		
+		document.addEventListener("keydown", function (e) { // Si appui sur les flèches gauche ou droite du clavier défilement des slides.
+		    this.recuperationCodeClavier(e.code);
+		}.bind(this));
 
-		// 	Défilement automatique des slides.
-		that.slideAuto = setInterval(that.deplacerBlocGauche,that.time);
-	},
-
-	// Déplacement du bloc sur la gauche /  
-	deplacerBlocGauche: function() {
-	    if (that.lastPosition === that.finalPosition) {
-	    	that.lastPosition = that.initialPosition;
-	    	that.slidesElt.style.left = that.lastPosition + "%";
-	    }
-	    else {
-	    	that.slidesElt.style.left = (that.lastPosition + that.vitesseGauche) + "%";
-	    	that.lastPosition = (that.lastPosition + that.vitesseGauche);
-	    }
-	},
-
-	//Déplacement du bloc sur la droite
-	deplacerBlocDroite: function() {
-		if (that.lastPosition === that.initialPosition) {
-			// Ne rien faire pour une fois		
-	    }
-	    else{
-	    	that.slidesElt.style.left = (that.lastPosition + that.vitesseDroite) + "%";
-	    	that.lastPosition = (that.lastPosition + that.vitesseDroite);
-	    }
-	},
-
-	// Récupération du code clavier et lancement de la méthode adaptée
-	slideToMove: function(code) {
-		switch (code) {
-		    case "ArrowLeft": 
-		    	that.deplacerBlocDroite();
-		        break;
-		    case "ArrowRight":
-		    	that.deplacerBlocGauche();
-		        break;
-    	}
-	},
-
-// Mise en pause du slider
-	sliderPause: function() {
-	that.compteur++;
-		if (that.compteur=== that.finalCompteur) {
-			that.slideAuto = setInterval(that.deplacerBlocDroite,that.time);
-			that.compteur=0;
-			that.play.style.display = "none";
-			that.pause.style.display = "block";
-		} 
-		else {
-			clearInterval(that.slideAuto);
-			that.pause.style.display = "none";
-			that.play.style.display = "block";
-		}
+		this.slideAuto = setInterval(this.deplacerBlocGauche.bind(this),this.temps); // Défilement automatique des slides.
 	}
 
-};
+
+
+	deplacerBlocGauche() {
+	    if (this.dernierePosition === this.positionFinale) {
+	    	this.dernierePosition = this.positionInitial;
+	    	this.slidesElt.style.left = this.dernierePosition + "%";
+	    }
+	    else {
+	    	this.slidesElt.style.left = (this.dernierePosition + this.vitesseGauche) + "%";
+	    	this.dernierePosition = (this.dernierePosition + this.vitesseGauche);
+	    }
+	}
+
+
+
+	deplacerBlocDroite() {
+		if (this.dernierePosition === this.positionInitial) {
+			this.dernierePosition = this.positionFinale;
+			this.slidesElt.style.left = this.dernierePosition + "%";
+	    }
+	    else{
+	    	this.slidesElt.style.left = (this.dernierePosition + this.vitesseDroite) + "%";
+	    	this.dernierePosition = (this.dernierePosition + this.vitesseDroite);
+	    }
+	}
+
+
+
+	recuperationCodeClavier(code) {
+		switch (code) {
+		    case "ArrowLeft": 
+		    	this.deplacerBlocDroite();
+		        break;
+		    case "ArrowRight":
+		    	this.deplacerBlocGauche();
+		        break;
+    	}
+	}
+
+
+
+	miseEnPauseDuSlider() {
+	this.compteur++;
+		if (this.compteur=== this.compteurFinal) {
+			this.slideAuto = setInterval(this.deplacerBlocGauche.bind(this),this.temps);
+			this.compteur = 0;
+			this.play.style.display = "none";
+			this.pause.style.display = "block";
+		} 
+		else {
+			clearInterval(this.slideAuto);
+			this.pause.style.display = "none";
+			this.play.style.display = "block";
+		}
+	}
+}
