@@ -1,17 +1,16 @@
+/* --- ==============================================================================
+   --- MISE EN FORME GÉNÉRALE
+   --- ============================================================================== */
+
 * {
     scroll-behavior: smooth;
 }
 
-
-/* --- ==============================================================================
-   --- MISE EN FORME GÉNÉRALE
-   --- ============================================================================== */
 #reservation {
     background-color: rgb(25, 30, 47);
 }
 
-#utilisation,
-#contact {
+#utilisation, #contact {
     background-color: white;
 }
 
@@ -31,13 +30,12 @@ h2 {
 }
 
 
+
 /* --- ==============================================================================
    --- HEADER
    --- ============================================================================== */
+
 header {
-    /*position: fixed;
-    top: 0px;
-    z-index: 9999;*/
     width: 100%;
     background-color: rgb(25, 30, 47);
     box-shadow: 0 1px 5px 0 rgba(84, 84, 84, 0.2), 0 2px 2px 0 rgba(84, 84, 84, 0.2), 0 3px 1px -2px rgba(84, 84, 84, 0.2);
@@ -82,11 +80,11 @@ header {
 /* TRANSITION BORDURE */
 .transition-bordure::before {
     content: "";
-    /* Positionnement du bloc content*/
+    /* Positionnement du bloc content */
     position: absolute;
     bottom: -6px;
     left: 0;
-    /* Aggrandissement du bloc*/
+    /* Aggrandissement du bloc */
     width: calc(100% + 1px);
     height: 2px;
     background: #36F7B1;
@@ -114,9 +112,11 @@ header {
 }
 
 
+
 /* --- ==============================================================================
    --- ACCUEIL
    --- ============================================================================== */
+
 #accueil {
     position: relative;
     height: 100vh;
@@ -187,7 +187,7 @@ video {
     animation-delay: .3s;
 }
 
-/* Animation fleche vers la section utilisation */
+/* Animation flèche vers la section utilisation */
 @keyframes fleche-clignotante {
     0% {
         opacity: 0;
@@ -201,6 +201,7 @@ video {
 }
 
 
+
 /* --- ==============================================================================
    --- UTILISATION
    --- ============================================================================== */
@@ -209,7 +210,6 @@ video {
     height: 90vh;
     display: flex;
 }
-
 
 #utilisation .bloc1 {
     display: flex;
@@ -252,7 +252,6 @@ video {
     box-shadow: 0 1px 5px 0 rgba(84, 84, 84, 0.2), 0 2px 2px 0 rgba(84, 84, 84, 0.2), 0 3px 1px -2px rgba(84, 84, 84, 0.2);
 }
 
-
 .chevrons {
     position: absolute;
     top: 220px;
@@ -285,7 +284,6 @@ video {
     margin-right: 2px;
 }
 
-
 /* Mise en forme des boutons pause et play */
 #slider-pause {
     position: absolute;
@@ -300,27 +298,18 @@ video {
     display: none;
 }
 
-
 .grand-rectangle-under-slider:hover #slider-pause {
 	display: block;
 	cursor: pointer;
 }
 
-
-#play, #pause {
-    cursor: pointer;
-}
-
-
 #play {
 	display:none;
 }
 
-
 #pause {
 	display:block;
 }
-
 
 #slider{
     height: 480px;
@@ -349,14 +338,15 @@ video {
 }
 
 
+
 /* --- ==============================================================================
    --- RÉSERVATION VELO
    --- ============================================================================== */
+
 #reservation {
     display: flex;
     flex-direction: column;
 }
-
 
 /* ========= GÉNÉRALITÉS ========= */
 /* Définition de la largeur et de la hauteur de la carte leafflet et du bloc réserver votre vélo */
@@ -365,6 +355,9 @@ video {
     width: 50%;
 }
 
+#infoStation, #formulaireReservation, #recapitulatif-reservation, #station-fermee {
+    width: 80%;
+}
 
 /* ========= MISE EN FORME DU TITRE H2 =========*/
 .titre-reservation {
@@ -374,13 +367,11 @@ video {
     color: white;
 }
 
-
 /* ========= MISE EN FORME BLOC CONTENANT LA MAP ET LE BLOC RÉSERVER VOTRE VELO =========*/
 .choix-station-velo {
     display: flex;
     height: 80vh;
 }
-
 
 /* ========= MISE EN FORME DU BLOC RÉSERVER VOTRE VELO ========= */
 #reservation-velo {
@@ -397,12 +388,6 @@ video {
     text-align: center;
     font-size: 40px;
     width: 100%;
-}
-
-
-/* ========= GÉNÉRALITÉS ========= */
-#infoStation, #formulaireReservation, #recapitulatif-reservation, #station-fermee {
-    width: 80%;
 }
 
 #station-fermee {
@@ -426,8 +411,7 @@ video {
     letter-spacing: 1px;
 }
 
-#infoStation span,
-#recapitulatif-reservation span {
+#infoStation span, #recapitulatif-reservation span {
     color: #F2AC99;
     font-size: 17px;
     margin-left: 10px;
@@ -438,7 +422,6 @@ video {
 #recapitulatif-reservation {
     padding: 5px 0;
 }
-
 
 /*========= MISE EN FORME FORMULAIRE =========*/
 #formulaireReservation {
@@ -508,7 +491,6 @@ hr {
     background-position: right center;
 }
 
-
 /*========= MISE EN FORME DU BLOC SIGNATURE  =========*/
 #signatureCanvas {
     position: absolute;
@@ -557,6 +539,7 @@ hr {
 }
 
 
+
 /* --- ==============================================================================
    --- NOUS CONTACTER
    --- ============================================================================== */
@@ -564,7 +547,6 @@ hr {
     display: flex;
     background-color: #ebebeb8a;
 }
-
 
 /* ========= MISE EN FORME DU RECTANGLE2  =========*/
 .rectangle1 {
@@ -615,15 +597,13 @@ hr {
     box-shadow: 0 1px 5px 0 rgba(84, 84, 84, 0.2), 0 2px 2px 0 rgba(84, 84, 84, 0.2), 0 3px 1px -2px rgba(84, 84, 84, 0.2);
 }
 
-
 /* Mise en forme des éléments de la carte de visite */
 .carte-de-visite h3 {
     margin-top: 20px;
     font-size: 40px;
 }
 
-.info,
-.carte-de-visite h3 {
+.info, .carte-de-visite h3 {
     margin-left: 40px;
 }
 
@@ -642,7 +622,6 @@ hr {
 .info:nth-child(5) {
     margin-bottom: 20px;
 }
-
 
 /* ========= MISE EN FORME DU RECTANGLE2  =========*/
 .rectangle2 {
@@ -667,6 +646,7 @@ hr {
 .image-contact:nth-child(2) {
     align-self: flex-start;
 }
+
 
 
 /* --- ==============================================================================
@@ -707,6 +687,7 @@ footer div {
 }
 
 
+
 /* --- ==============================================================================
    --- RESPONSIVE
    --- ============================================================================== */
@@ -740,7 +721,6 @@ footer div {
 
 
     /* ========= UTILISATION ========= */
-
     #utilisation {
         flex-direction: column;
         height: auto;
@@ -764,13 +744,11 @@ footer div {
         margin-bottom: 100px;
     }
 
-
     #petit-rectangle-haut-droit {
         display: none;
     }
 
     /* Changement de la taille du slider */
-
     .grand-rectangle-under-slider {
         height: 600px;
         width: 960px;
@@ -795,8 +773,6 @@ footer div {
         left: 460px;
     }
     
-    
-
 
     /* ========= RÉSERVATION VELO ========= */
     .titre-reservation{
@@ -827,7 +803,6 @@ footer div {
         width: 100%;
         height: auto;
         justify-content: space-around;
-        
     }
 
     .rectangle2 {
@@ -842,10 +817,10 @@ footer div {
 }
 
 
+
 @media screen and (max-width: 1024px) {
 
     /* ========= UTILISATION ========= */
-
     /* Changement de la taille du slider */
     .grand-rectangle-under-slider {
         height: 480px;
@@ -881,7 +856,6 @@ footer div {
         font-size: 80px;
     }
 
-
     /* ========= UTILISATION ========= */
     .grand-rectangle-under-slider {
         height: 700px;
@@ -910,7 +884,6 @@ footer div {
         left: 218px;
     }
 
-
     /*========= FOOTER =========*/
     .reseaux-sociaux {
         padding: 0 35px;
@@ -930,7 +903,6 @@ footer div {
         font-size: 30px;
     }
 
-
     /* ========= ACCUEIL =========*/
     .presentation-entreprise h1 {
         font-size: 50px;
@@ -943,7 +915,6 @@ footer div {
     .presentation-entreprise a  {
         margin-bottom: 60px;
     }
-
 
     /* ========= UTILISATION ========= */
     #utilisation .bloc2  {
@@ -1007,7 +978,7 @@ footer div {
     }
 
     #canvas {
-        width: 280;
+        width: 280px;
         height: 230px;
     }
 
@@ -1018,7 +989,6 @@ footer div {
     .btnCanvas {
         font-size: 14px;
     }
-
 
     /* ========= NOUS CONTACTER  =========*/
     .rectangle1 p {
@@ -1045,7 +1015,6 @@ footer div {
     #petit-rectangle-haut-gauche {
         display: none;
     }
-
 
     /*========= FOOTER =========*/
     footer {
